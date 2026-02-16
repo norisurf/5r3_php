@@ -1,19 +1,19 @@
-# HTTPS強制リダイレクト（お名前.com RSサーバー対応）
-RewriteEngine On
-RewriteCond %{HTTP:X-Forwarded-Proto} =http
-RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
-
-# sitemap.xml → sitemap.php
-RewriteRule ^sitemap\.xml$ sitemap.php [L]
-
-# セキュリティヘッダー
-<IfModule mod_headers.c>
-    Header set X-Content-Type-Options "nosniff"
-    Header set X-Frame-Options "SAMEORIGIN"
-    Header set X-XSS-Protection "1; mode=block"
-</IfModule>
-
-# .htaccess, .htpasswd のアクセス禁止
-<FilesMatch "^\.ht">
-    Deny from all
-</FilesMatch>
+# HTTPS強制リダイレクト（お名前.com RSサーバー対応）
+RewriteEngine On
+RewriteCond %{HTTP:X-Forwarded-Proto} =http
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+# sitemap.xml → sitemap.php
+RewriteRule ^sitemap\.xml$ sitemap.php [L]
+
+# セキュリティヘッダー
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# .htaccess, .htpasswd のアクセス禁止
+<FilesMatch "^\.ht">
+    Deny from all
+</FilesMatch>

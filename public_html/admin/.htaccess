@@ -1,6 +1,6 @@
-# Basic認証（二重防御）
-# 本番環境ではAuthUserFileのパスをサーバーの絶対パスに変更してください
-# AuthType Basic
-# AuthName "Admin Area"
-# AuthUserFile /home/ユーザー名/.htpasswd
-# Require valid-user
+# Basic認証（二重防御）
+# 本番環境ではAuthUserFileのパスをサーバーの絶対パスに変更してください
+# AuthType Basic
+# AuthName "Admin Area"
+# AuthUserFile /home/ユーザー名/.htpasswd
+# Require valid-user
