@@ -18,6 +18,12 @@ public_html/uploads/*
 public_html/video/*
 !public_html/video/.gitkeep
 
+# WordPress（別管理）
+public_html/blog/
+
+# FTPデプロイ状態ファイル
+public_html/.ftp-deploy-sync-state.json
+
 # エディタ・OS
 .DS_Store
 Thumbs.db

@@ -10,7 +10,7 @@ require_once __DIR__ . '/includes/functions.php';
 $db = getDB();
 
 // 車両一覧取得
-$stmt = $db->query('SELECT * FROM vehicles WHERE deleted_at IS NULL ORDER BY created_at DESC');
+$stmt = $db->query('SELECT * FROM vehicles WHERE deleted_at IS NULL ORDER BY price DESC');
 $vehicles = $stmt->fetchAll();
 
 // バナー取得
