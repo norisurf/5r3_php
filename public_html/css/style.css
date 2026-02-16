@@ -1,0 +1,185 @@
+/* ====================================
+   5R3 CARS - カスタムCSS
+   Tailwind CSS はCDNで読み込み、
+   このファイルにはカスタムスタイルのみ記述
+   ==================================== */
+
+:root {
+    --background: #ffffff;
+    --foreground: #0a0a0a;
+    --primary: #94a3b8;
+    --primary-foreground: #0a0a0a;
+    --silver-light: #f8fafc;
+    --silver-mid: #cbd5e1;
+    --silver-dark: #64748b;
+    --metallic-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 25%, #94a3b8 50%, #cbd5e1 75%, #f8fafc 100%);
+    --accent: #1e293b;
+    --accent-foreground: #ffffff;
+    --muted: #f1f5f9;
+    --muted-foreground: #475569;
+}
+
+body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* メタリックグラデーション */
+.bg-metallic {
+    background: var(--metallic-gradient);
+    background-size: 200% 200%;
+    animation: shine 10s linear infinite;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5), 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes shine {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* フェードインアニメーション */
+.fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.fade-up-delay-1 { transition-delay: 0.1s; }
+.fade-up-delay-2 { transition-delay: 0.2s; }
+.fade-up-delay-3 { transition-delay: 0.3s; }
+.fade-up-delay-4 { transition-delay: 0.4s; }
+
+.fade-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s;
+}
+.fade-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* パルスアニメーション */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+.animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+
+/* バウンスアニメーション */
+@keyframes bounce {
+    0%, 100% { transform: translateY(-10%); animation-timing-function: cubic-bezier(0.8, 0, 1, 1); }
+    50% { transform: translateY(0); animation-timing-function: cubic-bezier(0, 0, 0.2, 1); }
+}
+.animate-bounce { animation: bounce 1s infinite; }
+
+/* テキストシャドウ */
+.text-shadow-lg { text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+
+/* スクロールトップボタン */
+.scroll-top-btn {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.2s, transform 0.2s;
+    pointer-events: none;
+}
+.scroll-top-btn.visible {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+/* ライトボックス */
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background: rgba(0,0,0,0.95);
+    backdrop-filter: blur(4px);
+    align-items: center;
+    justify-content: center;
+}
+.lightbox.active {
+    display: flex;
+}
+.lightbox img {
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+}
+
+/* モバイルメニューオーバーレイ */
+.mobile-menu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: white;
+    flex-direction: column;
+}
+.mobile-menu.active {
+    display: flex;
+}
+
+/* 管理画面トグルスイッチ */
+.toggle-switch {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+.toggle-switch input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.toggle-slider {
+    width: 44px;
+    height: 24px;
+    background: #e2e8f0;
+    border-radius: 9999px;
+    transition: background 0.2s;
+    position: relative;
+}
+.toggle-slider::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 9999px;
+    border: 1px solid #cbd5e1;
+    transition: transform 0.2s;
+}
+.toggle-switch input:checked + .toggle-slider {
+    background: #003366;
+}
+.toggle-switch input:checked + .toggle-slider::after {
+    transform: translateX(20px);
+}
+
+/* line-clamp */
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* アスペクト比 (Tailwind CDNにない場合のフォールバック) */
+.aspect-video { aspect-ratio: 16/9; }
+.aspect-square { aspect-ratio: 1/1; }
+.aspect-4-3 { aspect-ratio: 4/3; }
+.aspect-16-10 { aspect-ratio: 16/10; }

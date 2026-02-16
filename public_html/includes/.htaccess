@@ -1,0 +1,2 @@
+# includesディレクトリへの直接アクセス禁止
+Deny from all

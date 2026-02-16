@@ -1,0 +1,31 @@
+# 機密情報・設定ファイル
+public_html/includes/config.php
+wp-config.php
+
+# ローカル開発用
+public_html/local.sqlite
+setup_local.php
+migrate.php
+test.php
+test.html
+nul
+
+# アップロードされた画像（サーバー上のみ）
+public_html/uploads/*
+!public_html/uploads/.gitkeep
+
+# 動画ファイル（サイズが大きいため）
+public_html/video/*
+!public_html/video/.gitkeep
+
+# エディタ・OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Claude Code
+.claude/
