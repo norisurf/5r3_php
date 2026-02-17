@@ -227,6 +227,56 @@ function showBannerMessage(text, isError) {
     el.classList.remove('hidden');
 }
 
+// --- 車両フォーム: URLから自動取得 ---
+
+function fetchFromUrl() {
+    var urlInput = document.getElementById('url-input');
+    if (!urlInput || !urlInput.value.trim()) {
+        alert('URLを入力してください');
+        return;
+    }
+
+    var url = urlInput.value.trim();
+
+    // 簡易バリデーション
+    if (url.indexOf('yahoo.co.jp') === -1) {
+        alert('Yahoo!オークションのURLを入力してください');
+        return;
+    }
+
+    var btn = document.getElementById('fetch-btn');
+    var btnText = btn ? btn.querySelector('span') : null;
+    if (btn) btn.disabled = true;
+    if (btnText) btnText.textContent = '取得中...';
+
+    fetch('/admin/api/fetch_and_parse.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': getCsrfToken()
+        },
+        body: JSON.stringify({ url: url })
+    })
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+            if (data.error) {
+                alert('取得に失敗しました: ' + data.error + (data.details ? '\n' + data.details : ''));
+                return;
+            }
+            // フォームに反映
+            applyParsedData(data);
+            alert('URLからの取得が完了しました');
+        })
+        .catch(function (err) {
+            console.error('Fetch error:', err);
+            alert('URLからの取得に失敗しました');
+        })
+        .finally(function () {
+            if (btn) btn.disabled = false;
+            if (btnText) btnText.textContent = 'URLから取得して自動入力';
+        });
+}
+
 // --- 車両フォーム: HTMLパース ---
 
 function parseHtml() {
@@ -256,18 +306,7 @@ function parseHtml() {
                 alert('\u30d1\u30fc\u30b9\u306b\u5931\u6557\u3057\u307e\u3057\u305f: ' + data.error);
                 return;
             }
-            // フォームに反映
-            document.getElementById('field-title').value = data.title || '';
-            document.getElementById('field-price').value = data.price || 0;
-            document.getElementById('field-description').value = data.description || '';
-            document.getElementById('field-basicInfo').value = JSON.stringify(data.basicInfo || {}, null, 2);
-            document.getElementById('field-detailedEquipment').value = JSON.stringify({
-                detailed: data.detailedInfo || {},
-                equipment: data.equipment || []
-            }, null, 2);
-
-            // 画像を反映
-            setImages(data.images || []);
+            applyParsedData(data);
             alert('\u30d1\u30fc\u30b9\u304c\u5b8c\u4e86\u3057\u307e\u3057\u305f');
         })
         .catch(function (err) {
@@ -277,6 +316,20 @@ function parseHtml() {
         .finally(function () {
             if (btn) btn.disabled = false;
         });
+}
+
+// --- 車両フォーム: パース結果をフォームに反映 ---
+
+function applyParsedData(data) {
+    document.getElementById('field-title').value = data.title || '';
+    document.getElementById('field-price').value = data.price || 0;
+    document.getElementById('field-description').value = data.description || '';
+    document.getElementById('field-basicInfo').value = JSON.stringify(data.basicInfo || {}, null, 2);
+    document.getElementById('field-detailedEquipment').value = JSON.stringify({
+        detailed: data.detailedInfo || {},
+        equipment: data.equipment || []
+    }, null, 2);
+    setImages(data.images || []);
 }
 
 // --- 車両フォーム: 画像管理 ---
