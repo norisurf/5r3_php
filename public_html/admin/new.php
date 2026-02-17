@@ -21,33 +21,12 @@ require_once __DIR__ . '/../includes/admin_header.php';
             <div class="sticky top-24 space-y-4 rounded-3xl border border-gray-100 bg-white p-6 shadow-sm text-gray-800">
                 <h2 class="text-xl font-bold text-[#003366]">自動入力ツール</h2>
 
-                <!-- URL入力 -->
-                <div>
-                    <p class="mb-2 text-xs font-bold text-gray-700">方法1: URLから自動取得</p>
-                    <p class="text-xs text-gray-500 mb-2">YahooオークションのURLを入力するだけで自動登録できます。</p>
-                    <input type="text" id="url-input" placeholder="https://page.auctions.yahoo.co.jp/jp/auction/..." class="w-full rounded-2xl border border-gray-200 px-4 py-3 text-sm focus:border-[#003366] focus:outline-none">
-                    <button type="button" onclick="fetchFromUrl()" id="fetch-btn" class="mt-2 flex w-full items-center justify-center gap-2 rounded-2xl bg-[#003366] py-3 font-bold text-white transition-all hover:bg-[#002244]">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-                        <span>URLから取得して自動入力</span>
-                    </button>
-                </div>
-
-                <div class="relative flex items-center">
-                    <div class="flex-grow border-t border-gray-200"></div>
-                    <span class="mx-4 flex-shrink text-xs text-gray-400">または</span>
-                    <div class="flex-grow border-t border-gray-200"></div>
-                </div>
-
-                <!-- HTML貼り付け（従来方式） -->
-                <div>
-                    <p class="mb-2 text-xs font-bold text-gray-700">方法2: HTMLソースを貼り付け</p>
-                    <p class="text-xs text-gray-500 mb-2">HTMLソースを手動で貼り付けて解析します。</p>
-                    <textarea id="html-input" placeholder="ここにHTMLを貼り付け..." class="h-40 w-full rounded-2xl border border-gray-200 p-4 text-sm focus:border-[#003366] focus:outline-none"></textarea>
-                    <button type="button" onclick="parseHtml()" id="parse-btn" class="mt-2 flex w-full items-center justify-center gap-2 rounded-2xl bg-[#facc15] py-3 font-bold text-[#003366] transition-all hover:bg-[#eab308]">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
-                        <span>解析して自動入力</span>
-                    </button>
-                </div>
+                <p class="text-xs text-gray-500">YahooオークションのURLを入力するだけで自動登録できます。</p>
+                <input type="text" id="url-input" placeholder="https://page.auctions.yahoo.co.jp/jp/auction/..." class="w-full rounded-2xl border border-gray-200 px-4 py-3 text-sm focus:border-[#003366] focus:outline-none">
+                <button type="button" onclick="fetchFromUrl()" id="fetch-btn" class="flex w-full items-center justify-center gap-2 rounded-2xl bg-[#facc15] py-3 font-bold text-[#003366] transition-all hover:bg-[#eab308]">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                    <span>URLから取得して自動入力</span>
+                </button>
             </div>
         </div>
 
