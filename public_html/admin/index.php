@@ -351,4 +351,4 @@ if ($banner && $banner['mode'] === 'auto') {
 
 <script src="/js/admin.js"></script>
 <?php
-declare(strict_types=1); require_once __DIR__ . '/../includes/admin_footer.php'; ?>
+require_once __DIR__ . '/../includes/admin_footer.php'; ?>

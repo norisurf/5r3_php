@@ -205,4 +205,4 @@ require_once __DIR__ . '/includes/header.php';
 </section>
 
 <?php
-declare(strict_types=1); require_once __DIR__ . '/includes/footer.php'; ?>
+require_once __DIR__ . '/includes/footer.php'; ?>

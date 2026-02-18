@@ -106,4 +106,4 @@ $equipment = jsonDecode($vehicle['equipment']);
 <script>var vehicleId = '<?= h($id) ?>';</script>
 <script src="/js/admin.js"></script>
 <?php
-declare(strict_types=1); require_once __DIR__ . '/../includes/admin_footer.php'; ?>
+require_once __DIR__ . '/../includes/admin_footer.php'; ?>

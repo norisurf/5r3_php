@@ -224,4 +224,4 @@ require_once __DIR__ . '/includes/header.php';
 
 <script src="/js/gallery.js"></script>
 <?php
-declare(strict_types=1); require_once __DIR__ . '/includes/footer.php'; ?>
+require_once __DIR__ . '/includes/footer.php'; ?>
