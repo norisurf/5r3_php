@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * 管理画面ダッシュボード
  */
@@ -349,4 +350,5 @@ if ($banner && $banner['mode'] === 'auto') {
 </div>
 
 <script src="/js/admin.js"></script>
-<?php require_once __DIR__ . '/../includes/admin_footer.php'; ?>
+<?php
+declare(strict_types=1); require_once __DIR__ . '/../includes/admin_footer.php'; ?>

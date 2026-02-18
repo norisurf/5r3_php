@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * 車両詳細ページ
  * /stock.php?id=xxx
@@ -222,4 +223,5 @@ require_once __DIR__ . '/includes/header.php';
 </div>
 
 <script src="/js/gallery.js"></script>
-<?php require_once __DIR__ . '/includes/footer.php'; ?>
+<?php
+declare(strict_types=1); require_once __DIR__ . '/includes/footer.php'; ?>

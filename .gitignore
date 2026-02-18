@@ -1,4 +1,5 @@
 # 機密情報・設定ファイル
+public_html/.env
 public_html/includes/config.php
 wp-config.php
 

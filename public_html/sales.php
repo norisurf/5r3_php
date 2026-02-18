@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * 中古車販売ページ
  */
@@ -280,4 +281,5 @@ $vehicles = $db->query('SELECT * FROM vehicles WHERE deleted_at IS NULL ORDER BY
 </section>
 
 <script src="/js/sort.js"></script>
-<?php require_once __DIR__ . '/includes/footer.php'; ?>
+<?php
+declare(strict_types=1); require_once __DIR__ . '/includes/footer.php'; ?>

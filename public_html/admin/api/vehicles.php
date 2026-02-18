@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * 管理API: 車両一覧 / 新規作成
  * GET  → 車両一覧取得
@@ -58,7 +59,8 @@ switch ($method) {
 
             jsonResponse($vehicle);
         } catch (PDOException $e) {
-            jsonResponse(['error' => 'データの保存に失敗しました', 'details' => $e->getMessage()], 500);
+            error_log('vehicles.php POST: ' . $e->getMessage());
+            jsonResponse(['error' => 'データの保存に失敗しました'], 500);
         }
         break;
 

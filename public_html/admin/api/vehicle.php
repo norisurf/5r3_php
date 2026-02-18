@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * 管理API: 車両個別操作
  * GET    ?id=xxx → 車両詳細取得
@@ -108,7 +109,8 @@ switch ($method) {
             $vehicle = $stmt->fetch();
             jsonResponse($vehicle);
         } catch (PDOException $e) {
-            jsonResponse(['error' => 'データの更新に失敗しました', 'details' => $e->getMessage()], 500);
+            error_log('vehicle.php PUT: ' . $e->getMessage());
+            jsonResponse(['error' => 'データの更新に失敗しました'], 500);
         }
         break;
 
@@ -120,7 +122,8 @@ switch ($method) {
             $stmt->execute([$now, $id]);
             jsonResponse(['success' => true]);
         } catch (PDOException $e) {
-            jsonResponse(['error' => '車両の削除に失敗しました', 'details' => $e->getMessage()], 500);
+            error_log('vehicle.php DELETE: ' . $e->getMessage());
+            jsonResponse(['error' => '車両の削除に失敗しました'], 500);
         }
         break;
 

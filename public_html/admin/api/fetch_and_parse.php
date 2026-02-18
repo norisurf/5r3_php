@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * 管理API: Yahoo!オークションURLからHTML取得＆解析
  * POST → URLを受け取り、HTMLを取得して車両情報を返す
@@ -75,5 +76,6 @@ try {
     $data = parseYahooVehicle($html);
     jsonResponse($data);
 } catch (\Throwable $e) {
-    jsonResponse(['error' => 'HTMLのパースに失敗しました', 'details' => $e->getMessage() . ' (line ' . $e->getLine() . ')'], 400);
+    error_log('fetch_and_parse.php: ' . $e->getMessage() . ' (line ' . $e->getLine() . ')');
+    jsonResponse(['error' => 'HTMLのパースに失敗しました'], 400);
 }

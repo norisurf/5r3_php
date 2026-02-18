@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * 買取ページ
  */
@@ -203,4 +204,5 @@ require_once __DIR__ . '/includes/header.php';
     </div>
 </section>
 
-<?php require_once __DIR__ . '/includes/footer.php'; ?>
+<?php
+declare(strict_types=1); require_once __DIR__ . '/includes/footer.php'; ?>
