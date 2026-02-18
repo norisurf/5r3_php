@@ -4,7 +4,6 @@ declare(strict_types=1);
  * 会社概要ページ
  */
 require_once __DIR__ . '/includes/config.php';
-require_once __DIR__ . '/includes/db.php';
 require_once __DIR__ . '/includes/functions.php';
 
 $pageTitle = '会社概要 - ' . SITE_NAME;
