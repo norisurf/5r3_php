@@ -48,7 +48,7 @@ require_once __DIR__ . '/includes/header.php';
                         </tr>
                         <tr class="border-b border-slate-200">
                             <th class="text-left px-6 md:px-10 py-6 bg-slate-100 font-bold text-slate-700 w-1/3 align-top">展示場</th>
-                            <td class="px-6 md:px-10 py-6 text-slate-700 font-medium"><?= h(SITE_ADDRESS_STORAGE) ?></td>
+                            <td class="px-6 md:px-10 py-6 text-slate-700 font-medium"><?= defined('SITE_ADDRESS_STORAGE') ? h(SITE_ADDRESS_STORAGE) : '' ?></td>
                         </tr>
                         <tr class="border-b border-slate-200">
                             <th class="text-left px-6 md:px-10 py-6 bg-slate-100 font-bold text-slate-700 w-1/3 align-top">電話番号</th>
