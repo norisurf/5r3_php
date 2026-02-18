@@ -473,5 +473,5 @@ require_once __DIR__ . '/includes/header.php';
 <div class="h-24 md:h-0"></div>
 
 <script src="/js/sort.js"></script>
-<?php
-declare(strict_types=1); require_once __DIR__ . '/includes/footer.php'; ?>
+
+<?php require_once __DIR__ . '/includes/footer.php'; ?>
