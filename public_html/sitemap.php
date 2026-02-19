@@ -45,6 +45,14 @@ echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
     <priority>0.8</priority>
   </url>
 
+  <!-- 会社概要ページ -->
+  <url>
+    <loc><?= $baseUrl ?>/company.php</loc>
+    <lastmod><?= $now ?></lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
   <!-- ランディングページ -->
   <url>
     <loc><?= $baseUrl ?>/lp.php</loc>

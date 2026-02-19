@@ -24,11 +24,33 @@ $pageDescription = '仕事用の車が急に必要になった方へ。キャラ
 <html lang="ja">
 
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KFWPVCJJF6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KFWPVCJJF6');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= h($pageTitle) ?></title>
     <meta name="description" content="<?= h($pageDescription) ?>">
     <link rel="icon" href="/images/favicon.png">
+    <link rel="canonical" href="https://5r3.co.jp/lp.php">
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="<?= h($pageTitle) ?>">
+    <meta property="og:description" content="<?= h($pageDescription) ?>">
+    <meta property="og:url" content="https://5r3.co.jp/lp.php">
+    <meta property="og:image" content="https://5r3.co.jp/images/5r3_rogo.png">
+    <meta property="og:site_name" content="5R3">
+    <meta property="og:locale" content="ja_JP">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<?= h($pageTitle) ?>">
+    <meta name="twitter:description" content="<?= h($pageDescription) ?>">
+    <meta name="twitter:image" content="https://5r3.co.jp/images/5r3_rogo.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/css/style.css">
 </head>

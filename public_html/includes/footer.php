@@ -85,6 +85,45 @@
     </button>
 
     <script src="/js/main.js"></script>
+
+    <!-- LocalBusiness Schema.org 構造化データ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AutoDealer",
+      "name": "ファイブ・アール・スリー株式会社",
+      "alternateName": "5R3 CARS",
+      "url": "https://5r3.co.jp",
+      "logo": "https://5r3.co.jp/images/5r3_rogo.png",
+      "image": "https://5r3.co.jp/images/5r3_rogo.png",
+      "description": "<?= defined('SITE_DESCRIPTION') ? addslashes(SITE_DESCRIPTION) : '' ?>",
+      "telephone": "<?= defined('SITE_PHONE') ? SITE_PHONE : '' ?>",
+      "email": "<?= defined('SITE_EMAIL') ? SITE_EMAIL : '' ?>",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "東大泉2-20-5-B1F",
+        "addressLocality": "練馬区",
+        "addressRegion": "東京都",
+        "postalCode": "178-0063",
+        "addressCountry": "JP"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens": "08:00",
+          "closes": "20:00"
+        }
+      ],
+      "priceRange": "¥¥",
+      "paymentAccepted": "Cash, Credit Card",
+      "currenciesAccepted": "JPY",
+      "areaServed": {
+        "@type": "Country",
+        "name": "JP"
+      }
+    }
+    </script>
     </body>
 
     </html>

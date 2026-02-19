@@ -32,7 +32,20 @@ $price = displayPrice((int)$vehicle['price']);
 $title = cleanTitle($vehicle['title']);
 $description = cleanDescription($vehicle['description'] ?? '');
 
+// SEOメタ情報
 $pageTitle = $title . ' - ' . SITE_NAME;
+$yearLabel = !empty($vehicle['year']) ? $vehicle['year'] . '年式' : '';
+$mileageLabel = !empty($vehicle['mileage']) ? '走行' . number_format((int)$vehicle['mileage']) . 'km' : '';
+$priceLabel = $vehicle['price'] ? displayPrice((int)$vehicle['price']) . '万円' : '';
+$metaParts = array_filter([$title, $yearLabel, $mileageLabel, $priceLabel]);
+$pageDescription = implode('・', $metaParts) . '。ワゴン・商用バン専門5R3CARSの在庫車両詳細。';
+$pageCanonicalUrl = 'https://5r3.co.jp/stock.php?id=' . urlencode((string)$vehicle['id']);
+$ogType = 'product';
+$firstImage = !empty($images) ? 'https://5r3.co.jp' . $images[0] : null;
+if ($firstImage) {
+    $ogImage = $firstImage;
+}
+
 require_once __DIR__ . '/includes/header.php';
 ?>
 
@@ -223,5 +236,35 @@ require_once __DIR__ . '/includes/header.php';
 </div>
 
 <script src="/js/gallery.js"></script>
+
+<!-- Vehicle 構造化データ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Car",
+  "name": "<?= addslashes(h($title)) ?>",
+  "description": "<?= addslashes(h($description ?: $pageDescription)) ?>",
+  <?php if (!empty($images)): ?>
+  "image": "<?= 'https://5r3.co.jp' . $images[0] ?>",
+  <?php endif; ?>
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "JPY",
+    "price": "<?= (int)$vehicle['price'] * 10000 ?>",
+    "availability": "https://schema.org/InStock",
+    "seller": {
+      "@type": "AutoDealer",
+      "name": "ファイブ・アール・スリー株式会社",
+      "url": "https://5r3.co.jp"
+    }
+  },
+  "vehicleModelDate": "<?= h($vehicle['year'] ?? '') ?>",
+  "mileageFromOdometer": {
+    "@type": "QuantitativeValue",
+    "value": <?= (int)($vehicle['mileage'] ?? 0) ?>,
+    "unitCode": "KMT"
+  }
+}
+</script>
 <?php
 require_once __DIR__ . '/includes/footer.php'; ?>

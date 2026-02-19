@@ -14,6 +14,21 @@
     <title><?= h($pageTitle ?? SITE_TITLE) ?></title>
     <meta name="description" content="<?= h($pageDescription ?? SITE_DESCRIPTION) ?>">
     <link rel="icon" href="/images/favicon.png">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="<?= h($pageCanonicalUrl ?? 'https://5r3.co.jp' . strtok($_SERVER['REQUEST_URI'] ?? '/', '?')) ?>">
+    <!-- Open Graph -->
+    <meta property="og:type" content="<?= h($ogType ?? 'website') ?>">
+    <meta property="og:title" content="<?= h($pageTitle ?? SITE_TITLE) ?>">
+    <meta property="og:description" content="<?= h($pageDescription ?? SITE_DESCRIPTION) ?>">
+    <meta property="og:url" content="<?= h($pageCanonicalUrl ?? 'https://5r3.co.jp' . strtok($_SERVER['REQUEST_URI'] ?? '/', '?')) ?>">
+    <meta property="og:image" content="<?= h($ogImage ?? 'https://5r3.co.jp/images/5r3_rogo.png') ?>">
+    <meta property="og:site_name" content="<?= h(SITE_NAME) ?>">
+    <meta property="og:locale" content="ja_JP">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<?= h($pageTitle ?? SITE_TITLE) ?>">
+    <meta name="twitter:description" content="<?= h($pageDescription ?? SITE_DESCRIPTION) ?>">
+    <meta name="twitter:image" content="<?= h($ogImage ?? 'https://5r3.co.jp/images/5r3_rogo.png') ?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
