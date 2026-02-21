@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -60,7 +61,7 @@ require_once __DIR__ . '/includes/header.php';
                 </h1>
 
                 <p class="text-3xl text-slate-700 font-bold">
-                    日産キャラバン・軽バン多数在庫
+                    ワンボックスカー・ミニバン多数在庫
                 </p>
 
                 <p class="text-slate-500 font-medium">
