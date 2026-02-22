@@ -65,9 +65,8 @@ function restoreVehicle(id) {
         .catch(function () { alert('\u5fa9\u5143\u306b\u5931\u6557\u3057\u307e\u3057\u305f'); });
 }
 
-function scrapeImages(id) {
+function scrapeImages(id, btn) {
     if (!confirm('この車両の画像をWebからダウンロードしてローカルに保存しますか？\n（すでに保存済みの場合はスキップされます）')) return;
-    var btn = event.currentTarget;
     btn.disabled = true;
     btn.style.opacity = '0.5';
     fetch('/admin/api/scrape_images.php', {

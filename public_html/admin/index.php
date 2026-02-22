@@ -338,7 +338,7 @@ if ($banner && $banner['mode'] === 'auto') {
                                                     d="M3 10h10a5 5 0 010 10H9m4-10l-4-4m4 4l-4 4" />
                                             </svg>
                                         </button>
-                                        <button onclick="scrapeImages('<?= h($v['id']) ?>')"
+                                        <button onclick="scrapeImages('<?= h($v['id']) ?>', this)"
                                             class="rounded-xl p-2 text-purple-400 hover:bg-purple-50 hover:text-purple-600 transition-colors"
                                             title="画像をローカル保存">
                                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -356,6 +356,6 @@ if ($banner && $banner['mode'] === 'auto') {
     </div>
 </div>
 
-<script src="/js/admin.js"></script>
+<script src="/js/admin.js?v=<?= filemtime(__DIR__ . '/../js/admin.js') ?>"></script>
 <?php
 require_once __DIR__ . '/../includes/admin_footer.php'; ?>
