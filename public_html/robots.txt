@@ -1,14 +1,14 @@
-User-agent: *
-Allow: /
-
-# 管理画面・内部ファイルをクロール禁止
-Disallow: /admin/
-Disallow: /includes/
-Disallow: /uploads/
-Disallow: /blog/wp-admin/
-Disallow: /blog/wp-includes/
-Disallow: /blog/wp-login.php
-Disallow: /blog/xmlrpc.php
-
-# サイトマップ
-Sitemap: https://5r3.co.jp/sitemap.xml
+User-agent: *
+Allow: /
+
+# 管理画面・内部ファイルをクロール禁止
+Disallow: /admin/
+Disallow: /includes/
+Disallow: /uploads/
+Disallow: /blog/wp-admin/
+Disallow: /blog/wp-includes/
+Disallow: /blog/wp-login.php
+Disallow: /blog/xmlrpc.php
+
+# サイトマップ
+Sitemap: https://5r3.co.jp/sitemap.xml

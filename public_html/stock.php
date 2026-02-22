@@ -24,6 +24,7 @@ if (!$vehicle) {
     exit;
 }
 
+$isSoldOut = !empty($vehicle['deleted_at']);
 $images = jsonDecode($vehicle['images']);
 $basicInfo = jsonDecode($vehicle['basic_info'], []);
 $detailedInfo = jsonDecode($vehicle['detailed_info'], []);
@@ -31,6 +32,7 @@ $equipment = jsonDecode($vehicle['equipment'], []);
 $price = displayPrice((int)$vehicle['price']);
 $title = cleanTitle($vehicle['title']);
 $description = cleanDescription($vehicle['description'] ?? '');
+$fromSold = ($_GET['from'] ?? '') === 'sold';
 
 // SEOメタ情報
 $pageTitle = $title . ' - ' . SITE_NAME;
@@ -51,9 +53,9 @@ require_once __DIR__ . '/includes/header.php';
 
 <div class="bg-white pb-20 pt-8 text-gray-800">
     <div class="container mx-auto px-4">
-        <a href="/" class="mb-8 inline-flex items-center gap-2 text-gray-500 hover:text-[#003366] transition-colors">
+        <a href="<?= $fromSold ? '/sold.php' : '/' ?>" class="mb-8 inline-flex items-center gap-2 text-gray-500 hover:text-[#003366] transition-colors">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
-            <span>在庫一覧に戻る</span>
+            <span><?= $fromSold ? '販売実績に戻る' : '在庫一覧に戻る' ?></span>
         </a>
 
         <div class="grid grid-cols-1 gap-12 lg:grid-cols-2">
@@ -106,17 +108,42 @@ require_once __DIR__ . '/includes/header.php';
                 </div>
 
                 <!-- 価格ボックス -->
-                <div class="rounded-3xl border border-gray-800 bg-black p-8 text-white shadow-xl shadow-black/20">
+                <div class="rounded-3xl border <?= $isSoldOut ? 'border-gray-600 bg-gray-900' : 'border-gray-800 bg-black' ?> p-8 text-white shadow-xl shadow-black/20">
                     <div class="mb-2 text-sm font-medium text-gray-400">車両本体価格（税込）</div>
-                    <div class="flex items-baseline gap-2">
+                    <div class="flex items-baseline gap-2 <?= $isSoldOut ? 'opacity-50' : '' ?>">
                         <span class="text-4xl font-black text-white md:text-5xl"><?= number_format($price) ?></span>
                         <span class="text-xl font-bold">円</span>
                     </div>
+                    <?php if ($isSoldOut): ?>
+                    <div class="mt-8 flex w-full items-center justify-center gap-2 rounded-xl bg-gray-700 px-8 py-4 text-lg font-black text-white tracking-[0.2em] uppercase">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
+                        <span>Sold Out</span>
+                    </div>
+                    <p class="mt-4 text-center text-sm text-gray-500">類似車両のお問い合わせはお気軽にどうぞ</p>
+                    <a href="tel:<?= str_replace('-', '', SITE_PHONE) ?>" class="mt-3 flex w-full items-center justify-center gap-2 rounded-xl border border-gray-600 px-8 py-3 text-base font-bold text-gray-300 hover:bg-gray-800 transition-all">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        <span><?= SITE_PHONE ?></span>
+                    </a>
+                    <?php else: ?>
                     <a href="tel:<?= str_replace('-', '', SITE_PHONE) ?>" class="mt-8 flex w-full items-center justify-center gap-2 rounded-xl bg-metallic px-8 py-4 text-lg font-bold text-slate-900 shadow-xl transition-all hover:scale-105 active:scale-95 border border-white/40">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
                         <span>お問い合わせ: <?= SITE_PHONE ?></span>
                     </a>
+                    <?php endif; ?>
                 </div>
+
+                <?php if ($isSoldOut): ?>
+                <!-- SOLD OUT 表示 -->
+                <div class="rounded-2xl border border-gray-200 bg-gray-50 px-6 py-5 flex items-center gap-4">
+                    <div class="flex-shrink-0 w-10 h-10 rounded-full bg-black flex items-center justify-center">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                    </div>
+                    <div>
+                        <div class="font-black text-gray-900 tracking-widest uppercase text-sm">Sold Out</div>
+                        <div class="text-xs text-gray-500 mt-0.5">この車両はすでに販売済みです。類似車両はお気軽にお問い合わせください。</div>
+                    </div>
+                </div>
+                <?php endif; ?>
 
                 <!-- クイック情報 -->
                 <div class="grid grid-cols-2 gap-4">

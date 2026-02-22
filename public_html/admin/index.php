@@ -338,6 +338,13 @@ if ($banner && $banner['mode'] === 'auto') {
                                                     d="M3 10h10a5 5 0 010 10H9m4-10l-4-4m4 4l-4 4" />
                                             </svg>
                                         </button>
+                                        <button onclick="scrapeImages('<?= h($v['id']) ?>')"
+                                            class="rounded-xl p-2 text-purple-400 hover:bg-purple-50 hover:text-purple-600 transition-colors"
+                                            title="画像をローカル保存">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                            </svg>
+                                        </button>
                                     <?php endif; ?>
                                 </div>
                             </td>

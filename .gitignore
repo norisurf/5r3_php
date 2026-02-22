@@ -4,7 +4,8 @@ public_html/includes/config.php
 wp-config.php
 
 # ローカル開発用
-public_html/local.sqlite
+local.sqlite
+*.sqlite
 setup_local.php
 migrate.php
 test.php

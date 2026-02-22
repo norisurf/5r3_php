@@ -42,7 +42,7 @@ function generateManageNumber(PDO $pdo): string {
     $date = date('Ymd');
     $seq = 1;
     while (true) {
-        $num = 'CAR-' . $date . '-' . str_pad($seq, 3, '0', STR_PAD_LEFT);
+        $num = 'CAR-' . $date . '-' . str_pad((string)$seq, 3, '0', STR_PAD_LEFT);
         $stmt = $pdo->prepare('SELECT COUNT(*) FROM vehicles WHERE manage_number = ?');
         $stmt->execute([$num]);
         if ((int)$stmt->fetchColumn() === 0) {
