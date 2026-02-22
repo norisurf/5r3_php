@@ -88,6 +88,5 @@ require_once __DIR__ . '/../includes/admin_header.php';
 </div>
 
 <script>var vehicleId = null;</script>
-<script src="/js/admin.js"></script>
 <?php
 require_once __DIR__ . '/../includes/admin_footer.php'; ?>

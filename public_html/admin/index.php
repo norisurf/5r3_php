@@ -356,6 +356,5 @@ if ($banner && $banner['mode'] === 'auto') {
     </div>
 </div>
 
-<script src="/js/admin.js?v=<?= filemtime(__DIR__ . '/../js/admin.js') ?>"></script>
 <?php
 require_once __DIR__ . '/../includes/admin_footer.php'; ?>
