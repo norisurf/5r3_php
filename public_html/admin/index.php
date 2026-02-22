@@ -356,5 +356,32 @@ if ($banner && $banner['mode'] === 'auto') {
     </div>
 </div>
 
+<script>
+// scrapeImages をインラインで定義（admin.js が WAF 等でブロックされた場合の保険）
+window.scrapeImages = function(id, btn) {
+    if (!confirm('この車両の画像をWebからダウンロードしてローカルに保存しますか？\n（すでに保存済みの場合はスキップされます）')) return;
+    var meta = document.querySelector('meta[name="csrf-token"]');
+    var token = meta ? meta.getAttribute('content') : '';
+    btn.disabled = true;
+    btn.style.opacity = '0.5';
+    fetch('/admin/api/scrape_images.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': token },
+        body: JSON.stringify({ vehicle_id: id })
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+        if (data.success) {
+            alert(data.message || '保存しました');
+            location.reload();
+        } else {
+            alert('エラー: ' + (data.error || '不明なエラー'));
+        }
+    })
+    .catch(function() { alert('通信エラーが発生しました'); })
+    .finally(function() { btn.disabled = false; btn.style.opacity = ''; });
+};
+</script>
+
 <?php
 require_once __DIR__ . '/../includes/admin_footer.php'; ?>
