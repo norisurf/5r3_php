@@ -267,7 +267,7 @@ if ($banner && $banner['mode'] === 'auto') {
                             id="vehicle-row-<?= h($v['id']) ?>">
                             <?php if ($filter === 'stopped'): ?>
                             <td class="px-4 py-4">
-                                <button onclick="purgeVehicle('<?= h($v['id']) ?>', <?= json_encode($v['title']) ?>)"
+                                <button onclick="purgeVehicle('<?= h($v['id']) ?>', <?= json_encode($v['title'], JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE) ?>)"
                                     class="flex items-center gap-1.5 rounded-xl border-2 border-red-300 bg-red-50 px-3 py-2 text-xs font-bold text-red-600 hover:border-red-500 hover:bg-red-100 hover:text-red-700 transition-colors whitespace-nowrap"
                                     title="データベースから完全削除">
                                     <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
