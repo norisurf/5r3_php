@@ -117,10 +117,29 @@ switch ($method) {
     case 'DELETE':
         verifyCsrfApi();
         try {
-            $now = date('Y-m-d H:i:s');
-            $stmt = $db->prepare("UPDATE vehicles SET deleted_at = ? WHERE id = ?");
-            $stmt->execute([$now, $id]);
-            jsonResponse(['success' => true]);
+            // purge=1 の場合はDBから完全削除（公開停止済み車両のみ）
+            $purge = !empty($_GET['purge']);
+            if ($purge) {
+                // 公開停止済みであることを確認してから完全削除
+                $stmt = $db->prepare("SELECT id, deleted_at FROM vehicles WHERE id = ?");
+                $stmt->execute([$id]);
+                $vehicle = $stmt->fetch();
+                if (!$vehicle) {
+                    jsonResponse(['error' => '車両が見つかりません'], 404);
+                }
+                if (empty($vehicle['deleted_at'])) {
+                    jsonResponse(['error' => '公開停止済みの車両のみ完全削除できます'], 400);
+                }
+                $stmt = $db->prepare("DELETE FROM vehicles WHERE id = ?");
+                $stmt->execute([$id]);
+                jsonResponse(['success' => true, 'purged' => true]);
+            } else {
+                // 通常削除: ソフトデリート（公開停止）
+                $now = date('Y-m-d H:i:s');
+                $stmt = $db->prepare("UPDATE vehicles SET deleted_at = ? WHERE id = ?");
+                $stmt->execute([$now, $id]);
+                jsonResponse(['success' => true]);
+            }
         } catch (PDOException $e) {
             error_log('vehicle.php DELETE: ' . $e->getMessage());
             jsonResponse(['error' => '車両の削除に失敗しました'], 500);

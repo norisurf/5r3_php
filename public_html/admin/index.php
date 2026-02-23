@@ -234,6 +234,9 @@ if ($banner && $banner['mode'] === 'auto') {
         <table class="w-full text-left">
             <thead class="bg-gray-50 text-xs font-bold uppercase tracking-wider text-gray-500">
                 <tr>
+                    <?php if ($filter === 'stopped'): ?>
+                    <th class="px-4 py-4 text-red-500">完全削除</th>
+                    <?php endif; ?>
                     <th class="px-4 py-4 w-[148px]">画像</th>
                     <th class="px-4 py-4">管理番号 / 登録日</th>
                     <th class="px-4 py-4">車両名 / 価格</th>
@@ -244,7 +247,7 @@ if ($banner && $banner['mode'] === 'auto') {
             <tbody class="divide-y divide-gray-100">
                 <?php if (empty($vehicles)): ?>
                     <tr>
-                        <td colspan="5" class="px-6 py-12 text-center text-gray-400">
+                        <td colspan="<?= $filter === 'stopped' ? 6 : 5 ?>" class="px-6 py-12 text-center text-gray-400">
                             <?php if ($search): ?>
                                 検索条件に一致する車両がありません。
                             <?php elseif ($filter === 'stopped'): ?>
@@ -262,6 +265,19 @@ if ($banner && $banner['mode'] === 'auto') {
                         ?>
                         <tr class="<?= $isDeleted ? 'bg-gray-50/50' : 'hover:bg-gray-50/50' ?> transition-colors"
                             id="vehicle-row-<?= h($v['id']) ?>">
+                            <?php if ($filter === 'stopped'): ?>
+                            <td class="px-4 py-4">
+                                <button onclick="purgeVehicle('<?= h($v['id']) ?>', <?= json_encode($v['title']) ?>)"
+                                    class="flex items-center gap-1.5 rounded-xl border-2 border-red-300 bg-red-50 px-3 py-2 text-xs font-bold text-red-600 hover:border-red-500 hover:bg-red-100 hover:text-red-700 transition-colors whitespace-nowrap"
+                                    title="データベースから完全削除">
+                                    <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                    完全削除
+                                </button>
+                            </td>
+                            <?php endif; ?>
                             <td>
                                 <?php if ($thumbSrc): ?>
                                     <img src="<?= h($thumbSrc) ?>" alt="" style="width: 128px; height: 128px; object-fit: cover;"

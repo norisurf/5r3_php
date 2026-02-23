@@ -43,6 +43,30 @@ function deleteVehicle(id) {
         .catch(function () { alert('\u524a\u9664\u306b\u5931\u6557\u3057\u307e\u3057\u305f'); });
 }
 
+function purgeVehicle(id, title) {
+    var msg = '【完全削除の確認】\n\n「' + title + '」\n\nこの車両をデータベースから完全に削除します。\nこの操作は取り消せません。\n\n本当に削除してよろしいですか？';
+    if (!confirm(msg)) return;
+    if (!confirm('最終確認：「' + title + '」を完全削除します。\nよろしいですか？')) return;
+    fetch('/admin/api/vehicle.php?id=' + encodeURIComponent(id) + '&purge=1', {
+        method: 'POST',
+        headers: {
+            'X-CSRF-Token': getCsrfToken(),
+            'X-HTTP-Method-Override': 'DELETE'
+        }
+    })
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+            if (data.success) {
+                var row = document.getElementById('vehicle-row-' + id);
+                if (row) row.remove();
+                alert('完全削除しました。');
+            } else {
+                alert('削除に失敗しました: ' + (data.error || ''));
+            }
+        })
+        .catch(function () { alert('削除に失敗しました'); });
+}
+
 function restoreVehicle(id) {
     if (!confirm('\u3053\u306e\u8eca\u4e21\u3092\u51fa\u54c1\u4e2d\u306b\u623b\u3057\u307e\u3059\u304b\uff1f')) return;
     fetch('/admin/api/vehicle.php?id=' + encodeURIComponent(id), {
