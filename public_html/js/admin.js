@@ -43,7 +43,9 @@ function deleteVehicle(id) {
         .catch(function () { alert('\u524a\u9664\u306b\u5931\u6557\u3057\u307e\u3057\u305f'); });
 }
 
-function purgeVehicle(id, title) {
+function purgeVehicle(btn) {
+    var id = btn.dataset.id;
+    var title = btn.dataset.title;
     var msg = '【完全削除の確認】\n\n「' + title + '」\n\nこの車両をデータベースから完全に削除します。\nこの操作は取り消せません。\n\n本当に削除してよろしいですか？';
     if (!confirm(msg)) return;
     if (!confirm('最終確認：「' + title + '」を完全削除します。\nよろしいですか？')) return;
