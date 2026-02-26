@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        :root {
+            --board-yellow: #e6f14a; /* 画像に近い蛍光イエロー */
+        }
+        .price-board {
+            width: 800px;
+            height: 560px;
+            background-color: var(--board-yellow);
+            border: 10px solid #000;
+            position: relative;
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            font-weight: bold;
+            box-sizing: border-box;
+            padding: 20px;
+        }
+
+        /* 共通スタイル */
+        .label { position: absolute; border-bottom: 2px solid #000; }
+        .box { position: absolute; border: 2px solid #000; display: flex; align-items: center; justify-content: center; }
+
+        /* 車名エリア */
+        .car-name-label {
+            top: 30px; left: 30px;
+            font-size: 40px;
+            width: 1200px;
+        }
+
+        /* 主な仕様区分 */
+        .spec-type {
+            top: 40px; right: 150px;
+            border: 2px solid #000;
+            border-radius: 15px;
+            padding: 5px 20px;
+            font-size: 18px;
+        }
+
+        /* 支払総額エリア */
+        .total-price-label {
+            top: 70px; right: 30px;
+            font-size: 40px;
+        }
+        .price-display-area {
+            position: absolute;      /* どこかで指定済みなら省略可 */
+            top: 180px;
+            /* left: 50%; は削除 */
+            /* transform: translateX(-50%); も削除 */
+            right: 5%;               /* 画面（または親要素）の右から 5% の位置に配置 */
+            width: 90%;
+            height: 200px;
+            display: flex;
+            justify-content:left;
+            align-items: center;
+        }
+        .unit-man-en {
+            position: absolute;
+            right: 40px; bottom: 180px;
+            font-size: 100px;
+            line-height: 1;
+        }
+        .tax-included {
+            position: absolute;
+            right: 15px; bottom: 190px;
+            writing-mode: vertical-rl;
+            font-size: 14px;
+        }
+
+        /* 下部詳細項目（車両価格、諸費用など） 
+        .details-row {
+            position: absolute;
+            bottom: 160px; width: 92%;
+            display: flex; justify-content: space-between;
+            font-size: 18px;
+        }
+        */
+        /* 保証・整備エリア */
+        .maintenance-info {
+            position: absolute;
+            bottom: 80px; left: 20px; right: 20px;
+            height: 60px;
+            border: 2px solid #000;
+            display: flex;
+        }
+        .info-cell {
+            flex: 1; border-right: 2px solid #000;
+            padding: 5px; font-size: 14px;
+            overflow: hidden;
+        }
+        .info-cell p {
+            margin: 0;
+            line-height: 1.2;
+        }
+        .info-cell .url-text {
+            font-size: 35px;
+            word-break: break-all;
+            overflow-wrap: break-word;
+        }
+
+        /* 最下段（登録年月、車検、走行距離） */
+        .footer-info {
+            position: absolute;
+            bottom: 20px; left: 20px; right: 20px;
+            display: flex; gap: 10px;
+        }
+        .footer-item {
+            background-color: #000;
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 10px;
+            font-size: 14px;
+            display: flex; align-items: center;
+        }
+        .footer-value {
+            background-color: transparent;
+            color: #000;
+            margin-left: 10px;
+            border-bottom: 2px solid #000;
+            min-width: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="price-board">
+    <div class="car-name-label">車名<span>車名はメーカー名+車種名としてください。</span></div>
+    <!--<div class="spec-type">主な仕様区分</div>-->
+    <div class="total-price-label">車両価格</div>
+
+    <div class="price-display-area">
+        <span style="color:#000; font-size: 200px;">金額</span>
+    </div>
+    
+    <div class="unit-man-en">万円</div>
+    <div class="tax-included">消費税込</div>
+
+    <!--
+    <div class="details-row">
+        <span>車両価格 <span style="border-bottom:2px solid #000; width:150px; display:inline-block;"></span> 万円</span>
+        <span>諸費用 <span style="border-bottom:2px solid #000; width:150px; display:inline-block;"></span> 万円</span>
+    </div>
+    -->
+    <div class="maintenance-info">
+        <div class="info-cell">
+            <p>■WEBサイトURL</p>
+            <p class="url-text">https://5r3.co.jp</p>
+        </div>
+        <div class="info-cell">
+            <p>■お問い合せTEL</p>
+            <p class="url-text">03-3922-2226</p>        </div>
+    </div>
+
+    <div class="footer-info">
+        <div class="footer-item">年式</div><div class="footer-value">ここに年式の変数を入れる</div>
+        <div class="footer-item">車検有効期限</div><div class="footer-value">ここに車検有効期限年数を入れる</div>
+        <div class="footer-item">走行距離</div><div class="footer-value">ここに走行距離を入れる</div>
+    </div>
+</div>
+
+</body>
+</html>

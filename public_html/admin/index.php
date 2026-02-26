@@ -322,6 +322,14 @@ if ($banner && $banner['mode'] === 'auto') {
                                                 d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                                         </svg>
                                     </a>
+                                    <a href="/price_bord.php?id=<?= h($v['id']) ?>" target="_blank"
+                                        class="rounded-xl p-2 text-yellow-500 hover:bg-yellow-50 hover:text-yellow-700 transition-colors"
+                                        title="プライスボード">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                                        </svg>
+                                    </a>
                                     <button onclick="duplicateVehicle('<?= h($v['id']) ?>')"
                                         class="rounded-xl p-2 text-green-400 hover:bg-green-50 hover:text-green-600 transition-colors"
                                         title="複製">
