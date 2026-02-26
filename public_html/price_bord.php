@@ -310,14 +310,14 @@ $mileage  = $basicInfo['走行距離']     ?? '';
 
 <body>
 
-    <!-- 印刷ボタン -->
+    <!-- ダウンロードボタン -->
     <div class="print-bar">
-        <button class="btn btn-pdf" onclick="window.print()">
+        <button id="download-btn" class="btn btn-pdf" onclick="downloadPDF()">
             <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
             </svg>
-            PDFで印刷 (A3)
+            ダウンロード
         </button>
         <a href="/admin/" class="btn btn-back">← 管理画面に戻る</a>
     </div>
@@ -370,6 +370,50 @@ $mileage  = $basicInfo['走行距離']     ?? '';
         </div>
 
     </div>
+
+    <!-- PDF自動ダウンロード用ライブラリ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+    async function downloadPDF() {
+        const btn = document.getElementById('download-btn');
+        const origHTML = btn.innerHTML;
+        btn.disabled = true;
+        btn.textContent = '生成中...';
+
+        const board = document.querySelector('.price-board');
+        // キャプチャ前に白背景へ切り替え（CSS変数を上書き）
+        board.style.backgroundColor = '#ffffff';
+
+        try {
+            // ボードを高解像度でキャプチャ
+            const canvas = await html2canvas(board, {
+                scale: 3,          // 高解像度（800×560 → 2400×1680px）
+                useCORS: true,
+                logging: false
+            });
+
+            const { jsPDF } = window.jspdf;
+            // A3横（420mm × 297mm）
+            const pdf = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a3' });
+
+            const imgData = canvas.toDataURL('image/jpeg', 0.97);
+            pdf.addImage(imgData, 'JPEG', 0, 0, 420, 297);
+
+            // ファイル名: 車名.pdf
+            pdf.save(<?= json_encode($carName ?: 'priceboard') ?> + '.pdf');
+
+        } catch (e) {
+            alert('PDF生成に失敗しました: ' + e.message);
+            console.error(e);
+        } finally {
+            // 黄色背景を元に戻す（エラー時も必ず実行）
+            board.style.backgroundColor = '';
+            btn.disabled = false;
+            btn.innerHTML = origHTML;
+        }
+    }
+    </script>
 
 </body>
 
