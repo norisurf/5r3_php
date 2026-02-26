@@ -138,7 +138,7 @@ $mileage  = $basicInfo['走行距離']     ?? '';
         }
 
         .label-car {
-            font-size: 33px;
+            font-size: 35px;
             line-height: 1.2;
             white-space: nowrap;
             flex-shrink: 0;
@@ -160,7 +160,7 @@ $mileage  = $basicInfo['走行距離']     ?? '';
         }
 
         .label-price {
-            font-size: 33px;
+            font-size: 35px;
             line-height: 1.2;
             white-space: nowrap;
         }
@@ -176,7 +176,7 @@ $mileage  = $basicInfo['走行距離']     ?? '';
         }
 
         .price-number {
-            font-size: 250px;
+            font-size: 240px;
             line-height: 0.9;
             letter-spacing: -0.02em;
             flex-shrink: 0;
