@@ -8,6 +8,7 @@ require_once __DIR__ . '/includes/functions.php';
 
 $pageTitle = '会社概要 - ' . SITE_NAME;
 $pageDescription = 'ファイブ・アール・スリー株式会社の会社概要。ワゴン・商用バン専門の中古車販売店です。';
+$pageCanonicalUrl = 'https://5r3.co.jp/company.php';
 require_once __DIR__ . '/includes/header.php';
 ?>
 

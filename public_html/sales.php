@@ -9,6 +9,7 @@ require_once __DIR__ . '/includes/functions.php';
 
 $pageTitle = '中古車販売 - ' . SITE_NAME;
 $pageDescription = 'ワゴン・商用バン専門の5R3 CARSが厳選した在庫車両をご紹介。徹底した品質管理とスピード納車でビジネスを止めません。';
+$pageCanonicalUrl = 'https://5r3.co.jp/sales.php';
 require_once __DIR__ . '/includes/header.php';
 
 // 車両データ取得

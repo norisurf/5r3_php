@@ -9,6 +9,7 @@ require_once __DIR__ . '/includes/functions.php';
 
 $pageTitle = '車両買取・下取り - ' . SITE_NAME;
 $pageDescription = 'ハイエース・キャラバンなど商用車の買取査定は5R3 CARSへ。過走行・旧式車もOK。最短即日現金化可能。';
+$pageCanonicalUrl = 'https://5r3.co.jp/purchase.php';
 require_once __DIR__ . '/includes/header.php';
 ?>
 

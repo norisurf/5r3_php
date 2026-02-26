@@ -10,7 +10,7 @@ require_once __DIR__ . '/includes/functions.php';
 
 $id = $_GET['id'] ?? '';
 if (empty($id)) {
-    header('Location: /');
+    header('Location: /', true, 301);
     exit;
 }
 
@@ -20,7 +20,21 @@ $stmt->execute([$id]);
 $vehicle = $stmt->fetch();
 
 if (!$vehicle) {
-    header('Location: /');
+    http_response_code(410);
+    $pageTitle = 'この車両は掲載終了です - ' . SITE_NAME;
+    $pageDescription = 'お探しの車両は販売済みまたは掲載終了となりました。在庫一覧から他の車両をご覧ください。';
+    require_once __DIR__ . '/includes/header.php';
+    ?>
+    <div class="container mx-auto px-4 py-32 text-center">
+        <div class="max-w-md mx-auto">
+            <p class="text-6xl font-black text-gray-200 mb-4">410</p>
+            <h1 class="text-2xl font-bold mb-4 text-gray-900">この車両は掲載終了です</h1>
+            <p class="text-gray-500 mb-10">お探しの車両は販売済みまたは掲載終了となりました。<br>在庫一覧から他の車両をご覧ください。</p>
+            <a href="/" class="inline-block bg-slate-900 text-white px-8 py-3 rounded-full font-bold hover:bg-slate-700 transition-colors">在庫一覧へ戻る</a>
+        </div>
+    </div>
+    <?php
+    require_once __DIR__ . '/includes/footer.php';
     exit;
 }
 
