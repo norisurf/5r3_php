@@ -138,7 +138,7 @@ $mileage  = $basicInfo['走行距離']     ?? '';
         }
 
         .label-car {
-            font-size: 36px;
+            font-size: 33px;
             line-height: 1.2;
             white-space: nowrap;
             flex-shrink: 0;
@@ -160,7 +160,7 @@ $mileage  = $basicInfo['走行距離']     ?? '';
         }
 
         .label-price {
-            font-size: 36px;
+            font-size: 33px;
             line-height: 1.2;
             white-space: nowrap;
         }
@@ -194,6 +194,12 @@ $mileage  = $basicInfo['走行距離']     ?? '';
             margin: 0 0.03em;
         }
 
+        /* 小数部を 2/3 サイズで表示 */
+        .price-dec {
+            font-size: 0.667em;
+            vertical-align: baseline;
+        }
+
         .price-unit {
             font-size: 58px;
             line-height: 1;
@@ -203,7 +209,8 @@ $mileage  = $basicInfo['走行距離']     ?? '';
 
         .tax-note {
             font-size: 13px;
-            writing-mode: vertical-rl;
+            text-align: center;
+            line-height: 1.1;
             margin-bottom: 10px;
             flex-shrink: 0;
         }
@@ -340,9 +347,9 @@ $mileage  = $basicInfo['走行距離']     ?? '';
 
             <!-- 金額（右寄せ） -->
             <div class="price-value-row">
-                <span class="price-number"><?= h($priceInt) ?><span class="price-dot"></span><?= h($priceDec) ?></span>
+                <span class="price-number"><?= h($priceInt) ?><span class="price-dot"></span><span class="price-dec"><?= h($priceDec) ?></span></span>
                 <span class="price-unit">万円</span>
-                <span class="tax-note">消費税込</span>
+                <span class="tax-note">消<br>費<br>税<br>込</span>
             </div>
 
         </div>
@@ -375,44 +382,50 @@ $mileage  = $basicInfo['走行距離']     ?? '';
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
-    async function downloadPDF() {
-        const btn = document.getElementById('download-btn');
-        const origHTML = btn.innerHTML;
-        btn.disabled = true;
-        btn.textContent = '生成中...';
+        async function downloadPDF() {
+            const btn = document.getElementById('download-btn');
+            const origHTML = btn.innerHTML;
+            btn.disabled = true;
+            btn.textContent = '生成中...';
 
-        const board = document.querySelector('.price-board');
-        // キャプチャ前に白背景へ切り替え（CSS変数を上書き）
-        board.style.backgroundColor = '#ffffff';
+            const board = document.querySelector('.price-board');
+            // キャプチャ前に白背景へ切り替え（CSS変数を上書き）
+            board.style.backgroundColor = '#ffffff';
 
-        try {
-            // ボードを高解像度でキャプチャ
-            const canvas = await html2canvas(board, {
-                scale: 3,          // 高解像度（800×560 → 2400×1680px）
-                useCORS: true,
-                logging: false
-            });
+            try {
+                // ボードを高解像度でキャプチャ
+                const canvas = await html2canvas(board, {
+                    scale: 3, // 高解像度（800×560 → 2400×1680px）
+                    useCORS: true,
+                    logging: false
+                });
 
-            const { jsPDF } = window.jspdf;
-            // A3横（420mm × 297mm）
-            const pdf = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a3' });
+                const {
+                    jsPDF
+                } = window.jspdf;
+                // A3横（420mm × 297mm）
+                const pdf = new jsPDF({
+                    orientation: 'landscape',
+                    unit: 'mm',
+                    format: 'a3'
+                });
 
-            const imgData = canvas.toDataURL('image/jpeg', 0.97);
-            pdf.addImage(imgData, 'JPEG', 0, 0, 420, 297);
+                const imgData = canvas.toDataURL('image/jpeg', 0.97);
+                pdf.addImage(imgData, 'JPEG', 0, 0, 420, 297);
 
-            // ファイル名: 車名.pdf
-            pdf.save(<?= json_encode($carName ?: 'priceboard') ?> + '.pdf');
+                // ファイル名: 車名.pdf
+                pdf.save(<?= json_encode($carName ?: 'priceboard') ?> + '.pdf');
 
-        } catch (e) {
-            alert('PDF生成に失敗しました: ' + e.message);
-            console.error(e);
-        } finally {
-            // 黄色背景を元に戻す（エラー時も必ず実行）
-            board.style.backgroundColor = '';
-            btn.disabled = false;
-            btn.innerHTML = origHTML;
+            } catch (e) {
+                alert('PDF生成に失敗しました: ' + e.message);
+                console.error(e);
+            } finally {
+                // 黄色背景を元に戻す（エラー時も必ず実行）
+                board.style.backgroundColor = '';
+                btn.disabled = false;
+                btn.innerHTML = origHTML;
+            }
         }
-    }
     </script>
 
 </body>
