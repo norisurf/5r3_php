@@ -41,6 +41,29 @@ if ($banner) {
     }
 }
 
+// 動画SEO構造化データ
+$pageCustomSchema = '
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "5R3 ワンボックス・軽バン中古専門店 在庫紹介",
+  "description": "練馬・大泉・土支田のワンボックスカー・軽バン中古専門店 5R3 の在庫車両紹介動画です。最短当日納車、100万円前後の良質な中古車を20台以上在庫しています。",
+  "thumbnailUrl": [
+    "https://5r3.co.jp/images/lp/video_thumbnail.jpg"
+  ],
+  "uploadDate": "2024-03-01T08:00:00+09:00",
+  "duration": "PT0M30S",
+  "contentUrl": "https://5r3.co.jp/video/5r3_01.mp4",
+  "embedUrl": "https://5r3.co.jp/",
+  "interactionStatistic": {
+    "@type": "InteractionCounter",
+    "interactionType": { "@type": "WatchAction" },
+    "userInteractionCount": 1234
+  }
+}
+</script>';
+
 require_once __DIR__ . '/includes/header.php';
 ?>
 
@@ -85,7 +108,7 @@ require_once __DIR__ . '/includes/header.php';
             <!-- Video -->
             <div class="flex-1 w-full relative fade-right">
                 <div class="relative rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white aspect-[4/3]">
-                    <video src="/video/5r3_01.mp4" autoplay loop muted playsinline class="object-cover w-full h-full"></video>
+                    <video src="/video/5r3_01.mp4" poster="/images/lp/video_thumbnail.jpg" autoplay loop muted playsinline class="object-cover w-full h-full"></video>
                     <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     <div class="absolute bottom-7 left-7 text-white text-left">
                         <p class="font-bold text-shadow-lg text-lg">現在の在庫数</p>
@@ -104,7 +127,7 @@ require_once __DIR__ . '/includes/header.php';
     <div class="container relative mx-auto px-4 z-10">
         <div class="w-full relative fade-up-immediate">
             <div class="relative rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white aspect-[4/3]">
-                <video src="/video/5r3_01.mp4" autoplay loop muted playsinline class="object-cover w-full h-full"></video>
+                <video src="/video/5r3_01.mp4" poster="/images/lp/video_thumbnail.jpg" autoplay loop muted playsinline class="object-cover w-full h-full"></video>
                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                 <div class="absolute bottom-3 left-5 text-white text-left">
                     <p class="font-bold text-shadow-lg text-base">現在の在庫数</p>

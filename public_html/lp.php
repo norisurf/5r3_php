@@ -53,6 +53,27 @@ $pageDescription = '仕事用の車が急に必要になった方へ。キャラ
     <meta name="twitter:image" content="https://5r3.co.jp/images/5r3_rogo.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/css/style.css">
+    <!-- 動画SEO構造化データ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      "name": "5R3 ワンボックス・軽バン中古専門店 プロモーションビデオ",
+      "description": "練馬・大泉・土支田のワンボックスカー・軽バン中古専門店 5R3 の在庫車両紹介動画です。最短当日納車、100万円前後の良質な中古車を20台以上在庫しています。",
+      "thumbnailUrl": [
+        "https://5r3.co.jp/images/lp/video_thumbnail.jpg"
+      ],
+      "uploadDate": "2024-03-01T08:00:00+09:00",
+      "duration": "PT0M30S",
+      "contentUrl": "https://5r3.co.jp/video/5r3_01.mp4",
+      "embedUrl": "https://5r3.co.jp/lp.php",
+      "interactionStatistic": {
+        "@type": "InteractionCounter",
+        "interactionType": { "@type": "WatchAction" },
+        "userInteractionCount": 850
+      }
+    }
+    </script>
 </head>
 
 <body class="antialiased min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-slate-200 selection:text-slate-900">
@@ -90,7 +111,7 @@ $pageDescription = '仕事用の車が急に必要になった方へ。キャラ
                 <!-- Video -->
                 <div class="flex-1 w-full relative fade-right">
                     <div class="relative rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white aspect-[4/3]">
-                        <video src="/video/5r3_01.mp4" autoplay loop muted playsinline class="object-cover w-full h-full"></video>
+                        <video src="/video/5r3_01.mp4" poster="/images/lp/video_thumbnail.jpg" autoplay loop muted playsinline class="object-cover w-full h-full"></video>
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                         <div class="absolute bottom-7 left-7 text-white text-left">
                             <p class="font-bold text-shadow-lg text-lg">現在の在庫数</p>
@@ -107,7 +128,7 @@ $pageDescription = '仕事用の車が急に必要になった方へ。キャラ
         <div class="container relative mx-auto px-4 z-10">
             <div class="w-full relative fade-up-immediate">
                 <div class="relative rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white aspect-[4/3]">
-                    <video src="/video/5r3_01.mp4" autoplay loop muted playsinline class="object-cover w-full h-full"></video>
+                    <video src="/video/5r3_01.mp4" poster="/images/lp/video_thumbnail.jpg" autoplay loop muted playsinline class="object-cover w-full h-full"></video>
                     <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     <div class="absolute bottom-3 left-5 text-white text-left">
                         <p class="font-bold text-shadow-lg text-base">現在の在庫数</p>

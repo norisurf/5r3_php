@@ -22,15 +22,15 @@ $now = date('Y-m-d');
 // XMLを文字列として組み立てる
 $lines = [];
 $lines[] = '<?xml version="1.0" encoding="UTF-8"?>';
-$lines[] = '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+$lines[] = '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">';
 
 // 静的ページ
 $staticPages = [
-    ['url' => '/',             'freq' => 'daily',   'pri' => '1.0'],
-    ['url' => '/sales.php',    'freq' => 'weekly',  'pri' => '0.8'],
-    ['url' => '/purchase.php', 'freq' => 'monthly', 'pri' => '0.8'],
-    ['url' => '/company.php',  'freq' => 'monthly', 'pri' => '0.6'],
-    ['url' => '/lp.php',       'freq' => 'weekly',  'pri' => '0.7'],
+    ['url' => '/',             'freq' => 'daily',   'pri' => '1.0', 'video' => true],
+    ['url' => '/sales.php',    'freq' => 'weekly',  'pri' => '0.8', 'video' => false],
+    ['url' => '/purchase.php', 'freq' => 'monthly', 'pri' => '0.8', 'video' => false],
+    ['url' => '/company.php',  'freq' => 'monthly', 'pri' => '0.6', 'video' => false],
+    ['url' => '/lp.php',       'freq' => 'weekly',  'pri' => '0.7', 'video' => true],
 ];
 
 foreach ($staticPages as $page) {
@@ -39,6 +39,18 @@ foreach ($staticPages as $page) {
     $lines[] = '    <lastmod>' . $now . '</lastmod>';
     $lines[] = '    <changefreq>' . $page['freq'] . '</changefreq>';
     $lines[] = '    <priority>' . $page['pri'] . '</priority>';
+    
+    if ($page['video']) {
+        $lines[] = '    <video:video>';
+        $lines[] = '      <video:thumbnail_loc>' . $baseUrl . '/images/lp/video_thumbnail.jpg</video:thumbnail_loc>';
+        $lines[] = '      <video:title>5R3 ワンボックス・軽バン中古専門店 プロモーション</video:title>';
+        $lines[] = '      <video:description>練馬・大泉・土支田のワンボックスカー・軽バン中古専門店 5R3 の在庫車両紹介動画です。最短当日納車可能です。</video:description>';
+        $lines[] = '      <video:content_loc>' . $baseUrl . '/video/5r3_01.mp4</video:content_loc>';
+        $lines[] = '      <video:publication_date>2024-03-01T08:00:00+09:00</video:publication_date>';
+        $lines[] = '      <video:family_friendly>yes</video:family_friendly>';
+        $lines[] = '    </video:video>';
+    }
+    
     $lines[] = '  </url>';
 }
 
