@@ -49,12 +49,17 @@ $description = cleanDescription($vehicle['description'] ?? '');
 $fromSold = ($_GET['from'] ?? '') === 'sold';
 
 // SEOメタ情報
-$pageTitle = $title . ' - ' . SITE_NAME;
 $yearLabel = !empty($vehicle['year']) ? $vehicle['year'] . '年式' : '';
 $mileageLabel = !empty($vehicle['mileage']) ? '走行' . number_format((int)$vehicle['mileage']) . 'km' : '';
 $priceLabel = $vehicle['price'] ? displayPrice((int)$vehicle['price']) . '万円' : '';
-$metaParts = array_filter([$title, $yearLabel, $mileageLabel, $priceLabel]);
-$pageDescription = implode('・', $metaParts) . '。ワゴン・商用バン専門5R3CARSの在庫車両詳細。';
+$metaParts = array_filter([$yearLabel, $mileageLabel, $priceLabel]);
+
+// タイトルとディスクリプションをSEO最適化（「中古」キーワードを強化）
+$pageTitle = $title . ' 中古車情報 | ' . SITE_NAME;
+$pageDescription = $title . 'の中古車をお探しなら、ワンボックス・ミニバン専門の5R3へ。' . 
+                   (empty($metaParts) ? '' : implode('・', $metaParts) . '。') . 
+                   '全国納車・即納相談受付中。';
+
 $pageCanonicalUrl = 'https://5r3.co.jp/stock.php?id=' . urlencode((string)$vehicle['id']);
 $ogType = 'product';
 $firstImage = !empty($images) ? 'https://5r3.co.jp' . $images[0] : null;
@@ -98,7 +103,7 @@ require_once __DIR__ . '/includes/header.php';
             <!-- 車両情報 -->
             <div class="space-y-8">
                 <div>
-                    <h1 class="text-2xl font-bold leading-tight text-black md:text-3xl"><?= h($title) ?></h1>
+                    <h1 class="text-2xl font-bold leading-tight text-black md:text-3xl"><?= h($title) ?> <span class="text-gray-500 font-normal">中古</span></h1>
                     <div class="mt-4 flex flex-wrap gap-4">
                         <?php if (!empty($basicInfo['年式'])): ?>
                         <div class="flex items-center gap-1.5 rounded-full bg-gray-100 px-4 py-1.5 text-sm font-medium text-gray-600">
@@ -283,8 +288,9 @@ require_once __DIR__ . '/includes/header.php';
 {
   "@context": "https://schema.org",
   "@type": "Car",
-  "name": "<?= addslashes(h($title)) ?>",
+  "name": "<?= addslashes(h($title)) ?> 中古車",
   "description": "<?= addslashes(h($description ?: $pageDescription)) ?>",
+  "itemCondition": "https://schema.org/UsedCondition",
   <?php if (!empty($images)): ?>
   "image": "<?= 'https://5r3.co.jp' . $images[0] ?>",
   <?php endif; ?>
