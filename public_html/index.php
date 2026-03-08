@@ -48,7 +48,7 @@ $pageCustomSchema = '
   "@context": "https://schema.org",
   "@type": "VideoObject",
   "name": "5R3 ワンボックス・軽バン中古専門店 在庫紹介",
-  "description": "練馬・大泉・土支田のワンボックスカー・軽バン中古専門店 5R3 の在庫車両紹介動画です。最短当日納車、100万円前後の良質な中古車を20台以上在庫しています。",
+  "description": "東京都練馬区、大泉学園・土支田のワンボックスカー・軽バン中古専門店 5R3 の在庫車両紹介動画です。最短当日納車、100万円前後の良質な中古車を20台以上在庫しています。",
   "thumbnailUrl": [
     "https://5r3.co.jp/images/lp/video_thumbnail.jpg"
   ],
@@ -397,6 +397,39 @@ require_once __DIR__ . '/includes/header.php';
                 <p class="text-slate-800 font-bold leading-relaxed">
                     「仕事に使う車だったので、話が早くて助かりました。手続きもスムーズでした。」
                 </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- 対応エリア -->
+<!-- ================================================================ -->
+<section class="py-20 bg-slate-50">
+    <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-black mb-10 text-slate-900">練馬区・大泉学園・土支田の即納車拠点</h2>
+            <div class="bg-white p-8 md:p-12 rounded-[2rem] shadow-sm border border-slate-100">
+                <div class="grid md:grid-cols-2 gap-10 text-left">
+                    <div>
+                        <h3 class="text-xl font-bold mb-4 flex items-center">
+                            <svg class="w-6 h-6 text-red-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                            店舗所在地（練馬区東大泉）
+                        </h3>
+                        <p class="text-slate-600 font-medium leading-relaxed">
+                            東京都練馬区、大泉学園駅エリアを中心とした地域密着の中古車専門店です。練馬区内はもちろん、隣接する板橋区、杉並区、埼玉県和光市、新座市、西東京市からも多くのご相談をいただいております。
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-4 flex items-center">
+                            <svg class="w-6 h-6 text-red-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" /></svg>
+                            周辺エリア最短即日納車に対応
+                        </h3>
+                        <p class="text-slate-600 font-medium leading-relaxed">
+                            練馬区土支田の展示場は大泉インターからも近く、板橋区や新座市からも好アクセス。人気のキャラバンやバネット、軽バンを常時20台以上在庫し、周辺地域のお客様へもスピーディーな納車をお約束します。
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
