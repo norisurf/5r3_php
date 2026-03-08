@@ -408,7 +408,7 @@ require_once __DIR__ . '/includes/header.php';
 <section class="py-20 bg-slate-50">
     <div class="container mx-auto px-4">
         <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-3xl font-black mb-10 text-slate-900">練馬区・大泉学園・土支田の即納車拠点</h2>
+            <h2 class="text-3xl font-black mb-10 text-slate-900">全国納車対応・東京都内最短当日お届け</h2>
             <div class="bg-white p-8 md:p-12 rounded-[2rem] shadow-sm border border-slate-100">
                 <div class="grid md:grid-cols-2 gap-10 text-left">
                     <div>
@@ -417,16 +417,16 @@ require_once __DIR__ . '/includes/header.php';
                             店舗所在地（練馬区東大泉）
                         </h3>
                         <p class="text-slate-600 font-medium leading-relaxed">
-                            東京都練馬区、大泉学園駅エリアを中心とした地域密着の中古車専門店です。練馬区内はもちろん、隣接する板橋区、杉並区、埼玉県和光市、新座市、西東京市からも多くのご相談をいただいております。
+                            練馬区・大泉学園駅エリアを拠点に【全国】へお届けします。東京都内はもちろん、隣接する板橋区、杉並区、西東京市、和光市、新座市等の近隣へは最短当日納車も可能です。
                         </p>
                     </div>
                     <div>
                         <h3 class="text-xl font-bold mb-4 flex items-center">
                             <svg class="w-6 h-6 text-red-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" /></svg>
-                            周辺エリア最短即日納車に対応
+                            全国どこへでも陸送納車が可能
                         </h3>
                         <p class="text-slate-600 font-medium leading-relaxed">
-                            練馬区土支田の展示場は大泉インターからも近く、板橋区や新座市からも好アクセス。人気のキャラバンやバネット、軽バンを常時20台以上在庫し、周辺地域のお客様へもスピーディーな納車をお約束します。
+                            練馬区土支田の展示場は大泉インターからも近く、全国各地への陸送もスムーズ。キャラバンや軽バンを常時20台以上在庫し、日本全国のお客様へスピーディーにお届けいたします。
                         </p>
                     </div>
                 </div>

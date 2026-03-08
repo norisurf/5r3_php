@@ -54,11 +54,11 @@ $mileageLabel = !empty($vehicle['mileage']) ? '走行' . number_format((int)$veh
 $priceLabel = $vehicle['price'] ? displayPrice((int)$vehicle['price']) . '万円' : '';
 $metaParts = array_filter([$yearLabel, $mileageLabel, $priceLabel]);
 
-// タイトルとディスクリプションをSEO最適化（「中古」キーワードを強化）
-$pageTitle = $title . ' 中古車情報 | ' . SITE_NAME;
-$pageDescription = $title . 'の中古車をお探しなら、ワンボックス・ミニバン専門の5R3へ。' . 
+// タイトルとディスクリプションをSEO最適化（「中古」キーワードと「地域名」を強化）
+$pageTitle = $title . ' 中古車情報 | 練馬区・大泉学園の5R3';
+$pageDescription = '東京都練馬区・大泉学園の5R3。' . $title . 'の中古車をお探しなら当店へ。東京都内・周辺エリア（板橋区・杉並区・西東京市・和光市・新座市）へ最短当日納車。全国陸送・納車対応！' . 
                    (empty($metaParts) ? '' : implode('・', $metaParts) . '。') . 
-                   '全国納車・即納相談受付中。';
+                   '即納相談受付中。';
 
 $pageCanonicalUrl = 'https://5r3.co.jp/stock.php?id=' . urlencode((string)$vehicle['id']);
 $ogType = 'product';
@@ -145,9 +145,19 @@ require_once __DIR__ . '/includes/header.php';
                     </a>
                     <?php else: ?>
                     <a href="tel:<?= str_replace('-', '', SITE_PHONE) ?>" class="mt-8 flex w-full items-center justify-center gap-2 rounded-xl bg-metallic px-8 py-4 text-lg font-bold text-slate-900 shadow-xl transition-all hover:scale-105 active:scale-95 border border-white/40">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1.042 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
                         <span>お問い合わせ: <?= SITE_PHONE ?></span>
                     </a>
+                    <!-- 地域SEO強化テキスト -->
+                    <div class="mt-6 rounded-2xl bg-slate-50 p-5 border border-slate-100">
+                        <h4 class="text-xs font-bold text-slate-900 mb-2 flex items-center">
+                            <svg class="w-4 h-4 text-red-600 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                            全国納車対応・東京都内即日
+                        </h4>
+                        <p class="text-[10px] text-slate-500 font-medium leading-relaxed">
+                            練馬区・大泉学園・土支田を拠点に【全国】へお届けします。東京都内や板橋区・杉並区・西東京市・和光市・新座市等の近隣へは最短当日納車も可能。大泉インター近くの展示場で現車確認も承ります。
+                        </p>
+                    </div>
                     <?php endif; ?>
                 </div>
 
