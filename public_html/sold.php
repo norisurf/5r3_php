@@ -45,7 +45,7 @@ require_once __DIR__ . '/includes/header.php';
                     $dPrice   = displayPriceMan($v['price']);
                     $cTitle   = cleanTitle($v['title']);
                 ?>
-                    <a href="/stock.php?id=<?= h($v['id']) ?>&from=sold"
+                    <a href="/stock.php?id=<?= h($v['id']) ?>"
                        class="vehicle-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl transition-all group flex flex-col">
                         <div class="relative aspect-[16/10] bg-gray-100 overflow-hidden">
                             <img src="<?= h($imgSrc) ?>" alt="<?= h($cTitle) ?>"
