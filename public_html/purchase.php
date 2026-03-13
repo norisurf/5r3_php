@@ -10,6 +10,30 @@ require_once __DIR__ . '/includes/functions.php';
 $pageTitle = '車買取・車査定なら練馬の5R3 | 中古車・商用車を高価買取';
 $pageDescription = '練馬区で車を売るなら5R3へ。ハイエース・キャラバンなどの中古車買取・車査定を強化中。過走行・旧式車も高額査定。無料査定・最短即日現金化対応。中古車の下取り相場以上を目指します。';
 $pageCanonicalUrl = 'https://5r3.co.jp/purchase.php';
+// 動画SEO用の構造化データ (VideoObject)
+$pageCustomSchema = '
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "練馬区の車買取・車査定なら5R3 | 中古車・商用車を高価買取",
+  "description": "練馬区で車を売るなら5R3へ。ハイエース・キャラバンなどの中古車買取・車査定を強化中。過走行・旧式車も高額査定。無料査定・最短即日現金化対応。中古車の下取り相場以上を目指す専門店ならではの査定プロセスを動画で解説。",
+  "thumbnailUrl": [
+    "https://5r3.co.jp/images/lp/Image_of_a_car_showroom_top.png"
+  ],
+  "uploadDate": "2026-03-13T10:00:00+09:00",
+  "duration": "PT1M15S",
+  "contentUrl": "https://5r3.co.jp/video/nerima-car-purchase-assessment.mp4",
+  "embedUrl": "https://5r3.co.jp/purchase.php",
+  "interactionStatistic": {
+    "@type": "InteractionCounter",
+    "interactionType": { "@type": "ReadAction" },
+    "userInteractionCount": 1024
+  },
+  "regionsAllowed": "JP"
+}
+</script>';
+
 require_once __DIR__ . '/includes/header.php';
 ?>
 
@@ -38,6 +62,33 @@ require_once __DIR__ . '/includes/header.php';
             <p class="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl font-medium leading-relaxed">
                 ハイエース・キャラバンなどの中古車・商用車の市場価格を熟知した専門スタッフが無料査定。車を売る際の不安を解消し、ビジネス車両としての価値を最大限に見出します。
             </p>
+        </div>
+    </div>
+</section>
+
+<!-- Video Section (SEO & Trust) -->
+<section class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="relative rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-slate-100 group">
+                <video 
+                    src="/video/nerima-car-purchase-assessment.mp4" 
+                    poster="/images/lp/Image_of_a_car_showroom_top.png"
+                    class="w-full aspect-video object-cover"
+                    controls
+                    playsinline
+                    preload="metadata"
+                >
+                    <p>お使いのブラウザは動画再生に対応していません。練馬区での車買取・車査定の様子は動画でご覧いただけます。</p>
+                </video>
+                <div class="absolute inset-0 pointer-events-none border border-black/5 rounded-[2rem]"></div>
+            </div>
+            <div class="mt-6 text-center">
+                <p class="text-slate-500 font-bold text-sm italic">
+                    <span class="inline-block bg-slate-900 text-white px-2 py-0.5 rounded mr-2 not-italic text-[10px]">VIDEO</span>
+                    練馬の店舗での車買取・無料査定の流れを1分で解説
+                </p>
+            </div>
         </div>
     </div>
 </section>
