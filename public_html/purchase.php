@@ -70,27 +70,20 @@ require_once __DIR__ . '/includes/header.php';
 <section class="py-12 bg-white">
     <div class="container mx-auto px-4">
         <div class="max-w-4xl mx-auto">
-            <div class="relative rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-slate-100 group cursor-pointer" onclick="toggleVideo(this)">
+            <div class="relative rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-slate-100 bg-black">
                 <video 
                     id="purchaseVideo"
                     src="/video/nerima-car-purchase-assessment.mp4" 
                     poster="/images/lp/Image_of_a_car_showroom_top.png"
                     class="w-full aspect-video object-cover"
                     autoplay 
-                    muted 
                     loop 
+                    muted 
                     playsinline
-                    preload="auto"
+                    onclick="this.paused ? this.play() : this.pause()"
                 >
                     <p>お使いのブラウザは動画再生に対応していません。練馬区での車買取・車査定の様子は動画でご覧いただけます。</p>
                 </video>
-                <div id="videoOverlay" class="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 transition-opacity group-hover:opacity-100 pointer-events-none">
-                    <div class="bg-white/20 backdrop-blur-md p-6 rounded-full border border-white/30">
-                        <svg id="playPauseIcon" class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20">
-                            <path id="pausePath" fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                </div>
             </div>
             <div class="mt-6 text-center">
                 <p class="text-slate-500 font-bold text-sm italic">
@@ -101,53 +94,6 @@ require_once __DIR__ . '/includes/header.php';
         </div>
     </div>
 </section>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const video = document.getElementById('purchaseVideo');
-    if (video) {
-        // ブラウザの自動再生ブロックを回避するための処理
-        video.muted = true;
-        const playPromise = video.play();
-        
-        if (playPromise !== undefined) {
-            playPromise.then(_ => {
-                // 自動再生成功
-            }).catch(error => {
-                // 自動再生がブロックされた場合、オーバーレイを表示してユーザーに知らせる
-                document.getElementById('videoOverlay').classList.add('opacity-100');
-                updateIcon(true); // 再生アイコンに切り替え
-            });
-        }
-    }
-});
-
-function updateIcon(isPaused) {
-    const pausePath = 'M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z';
-    const playPath = 'M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z';
-    const iconPath = document.getElementById('pausePath');
-    if (iconPath) {
-        iconPath.setAttribute('d', isPaused ? playPath : pausePath);
-    }
-}
-
-function toggleVideo(container) {
-    const video = container.querySelector('video');
-    const overlay = document.getElementById('videoOverlay');
-
-    if (video.paused) {
-        video.play();
-        updateIcon(false);
-        overlay.classList.add('opacity-0');
-        overlay.classList.remove('opacity-100');
-    } else {
-        video.pause();
-        updateIcon(true);
-        overlay.classList.add('opacity-100');
-        overlay.classList.remove('opacity-0');
-    }
-}
-</script>
 
 <!-- Features -->
 <section class="py-24 bg-white">
