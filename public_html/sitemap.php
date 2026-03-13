@@ -45,7 +45,7 @@ foreach ($staticPages as $page) {
         $lines[] = '      <video:thumbnail_loc>' . $baseUrl . '/images/lp/video_thumbnail.jpg</video:thumbnail_loc>';
         $lines[] = '      <video:title>5R3 ワンボックス・軽バン中古専門店 プロモーション</video:title>';
         $lines[] = '      <video:description>練馬・大泉・土支田のワンボックスカー・軽バン中古専門店 5R3 の在庫車両紹介動画です。最短当日納車可能です。</video:description>';
-        $lines[] = '      <video:content_loc>' . $baseUrl . '/video/5r3_01.mp4</video:content_loc>';
+        $lines[] = '      <video:player_loc>' . $baseUrl . '/</video:player_loc>';
         $lines[] = '      <video:publication_date>2024-03-01T08:00:00+09:00</video:publication_date>';
         $lines[] = '      <video:family_friendly>yes</video:family_friendly>';
         $lines[] = '    </video:video>';
@@ -54,7 +54,7 @@ foreach ($staticPages as $page) {
         $lines[] = '      <video:thumbnail_loc>' . $baseUrl . '/images/lp/Image_of_a_car_showroom_top.png</video:thumbnail_loc>';
         $lines[] = '      <video:title>練馬区の車買取・車査定なら5R3 | 中古車・商用車を高価買取</video:title>';
         $lines[] = '      <video:description>練馬区の車買取・車査定プロセスを動画で解説。ハイエース・キャラバンなど中古車・商用車の高額査定に自信があります。</video:description>';
-        $lines[] = '      <video:content_loc>' . $baseUrl . '/video/nerima-car-purchase-assessment.mp4</video:content_loc>';
+        $lines[] = '      <video:player_loc>' . $baseUrl . '/purchase.php</video:player_loc>';
         $lines[] = '      <video:publication_date>2026-03-13T10:00:00+09:00</video:publication_date>';
         $lines[] = '      <video:family_friendly>yes</video:family_friendly>';
         $lines[] = '    </video:video>';

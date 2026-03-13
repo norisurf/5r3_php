@@ -54,7 +54,6 @@ $pageCustomSchema = '
   ],
   "uploadDate": "2024-03-01T08:00:00+09:00",
   "duration": "PT0M30S",
-  "contentUrl": "https://5r3.co.jp/video/5r3_01.mp4",
   "embedUrl": "https://5r3.co.jp/",
   "interactionStatistic": {
     "@type": "InteractionCounter",

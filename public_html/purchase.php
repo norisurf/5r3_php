@@ -23,7 +23,6 @@ $pageCustomSchema = '
   ],
   "uploadDate": "2026-03-13T10:00:00+09:00",
   "duration": "PT1M15S",
-  "contentUrl": "https://5r3.co.jp/video/nerima-car-purchase-assessment.mp4",
   "embedUrl": "https://5r3.co.jp/purchase.php",
   "interactionStatistic": {
     "@type": "InteractionCounter",
