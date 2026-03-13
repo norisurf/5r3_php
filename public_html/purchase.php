@@ -75,12 +75,12 @@ require_once __DIR__ . '/includes/header.php';
                     id="purchaseVideo"
                     src="/video/nerima-car-purchase-assessment.mp4" 
                     poster="/images/lp/Image_of_a_car_showroom_top.png"
-                    class="w-full aspect-video object-cover pointer-events-none"
+                    class="w-full aspect-video object-cover"
+                    autoplay 
+                    muted 
+                    loop 
                     playsinline
-                    muted
-                    autoplay
-                    loop
-                    preload="metadata"
+                    preload="auto"
                 >
                     <p>お使いのブラウザは動画再生に対応していません。練馬区での車買取・車査定の様子は動画でご覧いただけます。</p>
                 </video>
@@ -103,21 +103,46 @@ require_once __DIR__ . '/includes/header.php';
 </section>
 
 <script>
-function toggleVideo(container) {
-    const video = container.querySelector('video');
-    const overlay = document.getElementById('videoOverlay');
+document.addEventListener('DOMContentLoaded', function() {
+    const video = document.getElementById('purchaseVideo');
+    if (video) {
+        // ブラウザの自動再生ブロックを回避するための処理
+        video.muted = true;
+        const playPromise = video.play();
+        
+        if (playPromise !== undefined) {
+            playPromise.then(_ => {
+                // 自動再生成功
+            }).catch(error => {
+                // 自動再生がブロックされた場合、オーバーレイを表示してユーザーに知らせる
+                document.getElementById('videoOverlay').classList.add('opacity-100');
+                updateIcon(true); // 再生アイコンに切り替え
+            });
+        }
+    }
+});
+
+function updateIcon(isPaused) {
     const pausePath = 'M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z';
     const playPath = 'M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z';
     const iconPath = document.getElementById('pausePath');
+    if (iconPath) {
+        iconPath.setAttribute('d', isPaused ? playPath : pausePath);
+    }
+}
+
+function toggleVideo(container) {
+    const video = container.querySelector('video');
+    const overlay = document.getElementById('videoOverlay');
 
     if (video.paused) {
         video.play();
-        iconPath.setAttribute('d', pausePath);
+        updateIcon(false);
         overlay.classList.add('opacity-0');
         overlay.classList.remove('opacity-100');
     } else {
         video.pause();
-        iconPath.setAttribute('d', playPath);
+        updateIcon(true);
         overlay.classList.add('opacity-100');
         overlay.classList.remove('opacity-0');
     }
