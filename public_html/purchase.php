@@ -262,10 +262,10 @@ require_once __DIR__ . '/includes/header.php';
 
             <div class="relative z-10">
                 <h2 class="text-3xl md:text-5xl font-black mb-6 leading-tight tracking-tight">
-                    急ぎの増車・納車、<br>まずはご相談ください
+                    車買取・無料査定のご依頼、<br>まずはお気軽にご相談ください
                 </h2>
                 <p class="text-lg md:text-xl text-slate-400 mb-12 max-w-2xl mx-auto font-medium">
-                    書類の準備状況や、ご希望の車種についてお聞かせください。プロが全力で当日納車に向けて並行稼働します。
+                    車種・年式・走行距離をお教えいただければ、練馬の専門スタッフが無料査定額をすぐにご案内します。過走行・旧式の中古車もお気軽にどうぞ。
                 </p>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -313,14 +313,14 @@ require_once __DIR__ . '/includes/header.php';
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
                         </svg>
-                        全国陸送納車対応
+                        無料査定・最短即日現金化
                     </div>
                     <div class="flex items-center">
                         <svg class="w-4 h-4 mr-2 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
                         </svg>
-                        業者販売大歓迎
+                        過走行・旧式車も高額査定
                     </div>
                 </div>
             </div>
