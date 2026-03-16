@@ -331,7 +331,7 @@ require_once __DIR__ . '/includes/header.php';
 <div class="md:hidden h-28"></div>
 
 <!-- スマホ固定電話ボタン -->
-<div class="md:hidden fixed bottom-0 left-0 right-0 z-50 p-4 bg-white/80 backdrop-blur-md border-t border-gray-100 shadow-2xl">
+<div class="md:hidden fixed bottom-0 left-0 right-0 z-50 p-4">
     <a href="tel:0339222226" class="w-full flex flex-col items-center justify-center bg-red-600 text-white px-10 py-5 rounded-full shadow-2xl shadow-red-600/30 hover:bg-red-700 transition-all active:scale-95 border-4 border-white ring-4 ring-red-100">
         <div class="flex items-center text-2xl font-black">
             <svg class="w-8 h-8 mr-3 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -339,7 +339,7 @@ require_once __DIR__ . '/includes/header.php';
             </svg>
             03-3922-2226
         </div>
-        <span class="text-sm font-bold opacity-90 mt-1">平日 8:00 - 20:00 ｜ 在庫確認だけOK</span>
+        <span class="text-sm font-bold opacity-90 mt-1">8:00 - 20:00 ｜ 査定だけでもOK</span>
     </a>
 </div>
 
