@@ -26,6 +26,9 @@ public_html/blog/
 # FTPデプロイ状態ファイル
 public_html/.ftp-deploy-sync-state.json
 
+# Node.js
+node_modules/
+
 # エディタ・OS
 .DS_Store
 Thumbs.db

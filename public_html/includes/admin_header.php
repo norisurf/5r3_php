@@ -12,7 +12,7 @@ requireLogin();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= h($pageTitle ?? '管理画面 - ' . SITE_NAME) ?></title>
     <link rel="icon" href="/images/favicon.png">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/tailwind.css">
     <link rel="stylesheet" href="/css/style.css">
     <meta name="csrf-token" content="<?= csrfToken() ?>">
 </head>

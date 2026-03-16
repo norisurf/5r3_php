@@ -38,7 +38,7 @@ if (isset($_SESSION['admin_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ログイン - <?= SITE_NAME ?> 管理画面</title>
     <link rel="icon" href="/images/favicon.png">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/tailwind.css">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body class="antialiased bg-gray-100 min-h-screen flex items-center justify-center">

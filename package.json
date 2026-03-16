@@ -1,0 +1,28 @@
+{
+  "name": "5r3_php",
+  "version": "1.0.0",
+  "description": "",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "build:css": "tailwindcss -i src/tailwind.css -o public_html/css/tailwind.css --minify",
+    "watch:css": "tailwindcss -i src/tailwind.css -o public_html/css/tailwind.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/norisurf/5r3_php.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/norisurf/5r3_php/issues"
+  },
+  "homepage": "https://github.com/norisurf/5r3_php#readme",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.2.1",
+    "tailwindcss": "^4.2.1"
+  }
+}

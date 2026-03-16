@@ -51,7 +51,7 @@ $pageDescription = '仕事用の車が急に必要になった方へ。キャラ
     <meta name="twitter:title" content="<?= h($pageTitle) ?>">
     <meta name="twitter:description" content="<?= h($pageDescription) ?>">
     <meta name="twitter:image" content="https://5r3.co.jp/images/5r3_rogo.png">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/tailwind.css">
     <link rel="stylesheet" href="/css/style.css">
     <!-- 動画SEO構造化データ -->
     <script type="application/ld+json">
