@@ -37,6 +37,7 @@ $description = cleanDescription($vehicle['description'] ?? '');
 // 前のページが「販売実績」なら販売実績に戻るように判定
 $referer = $_SERVER['HTTP_REFERER'] ?? '';
 $fromSold = str_contains($referer, 'sold.php');
+$fromPc = ($_GET['from'] ?? '') === 'pc';
 
 // SEOメタ情報
 $yearLabel = !empty($vehicle['year']) ? $vehicle['year'] . '年式' : '';
@@ -62,9 +63,13 @@ require_once __DIR__ . '/includes/header.php';
 
 <div class="bg-white pb-20 pt-8 text-gray-800">
     <div class="container mx-auto px-4">
-        <a href="<?= $fromSold ? '/sold.php' : '/' ?>" class="mb-8 inline-flex items-center gap-2 text-gray-500 hover:text-[#003366] transition-colors">
+        <?php
+            $backUrl = $fromPc ? '/purchase_caravan.php' : ($fromSold ? '/sold.php' : '/');
+            $backText = $fromPc ? '買取特設ページに戻る' : ($fromSold ? '販売実績に戻る' : '在庫一覧に戻る');
+        ?>
+        <a href="<?= $backUrl ?>" class="mb-8 inline-flex items-center gap-2 text-gray-500 hover:text-[#003366] transition-colors">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
-            <span><?= $fromSold ? '販売実績に戻る' : '在庫一覧に戻る' ?></span>
+            <span><?= $backText ?></span>
         </a>
 
         <div class="grid grid-cols-1 gap-12 lg:grid-cols-2">
@@ -93,7 +98,7 @@ require_once __DIR__ . '/includes/header.php';
             <!-- 車両情報 -->
             <div class="space-y-8">
                 <div>
-                    <h1 class="text-2xl font-bold leading-tight text-black md:text-3xl"><?= h($title) ?> <span class="text-gray-500 font-normal">中古</span></h1>
+                    <h1 class="text-2xl font-bold leading-tight text-black md:text-3xl"><?= h($title) ?> <span class="text-gray-500 font-normal"><?= $fromPc ? '買取' : '中古' ?></span></h1>
                     <div class="mt-4 flex flex-wrap gap-4">
                         <?php if (!empty($basicInfo['年式'])): ?>
                         <div class="flex items-center gap-1.5 rounded-full bg-gray-100 px-4 py-1.5 text-sm font-medium text-gray-600">
@@ -118,17 +123,25 @@ require_once __DIR__ . '/includes/header.php';
 
                 <!-- 価格ボックス -->
                 <div class="rounded-3xl border <?= $isSoldOut ? 'border-gray-600 bg-gray-900' : 'border-gray-800 bg-black' ?> p-8 text-white shadow-xl shadow-black/20">
+                    <?php if (!$fromPc): ?>
                     <div class="mb-2 text-sm font-medium text-gray-400">車両本体価格（税込）</div>
                     <div class="flex items-baseline gap-2 <?= $isSoldOut ? 'opacity-50' : '' ?>">
                         <span class="text-4xl font-black text-white md:text-5xl"><?= number_format($price) ?></span>
                         <span class="text-xl font-bold">円</span>
                     </div>
+                    <?php endif; ?>
                     <?php if ($isSoldOut): ?>
+                    <?php if (!$fromPc): ?>
                     <div class="mt-8 flex w-full items-center justify-center gap-2 rounded-xl bg-gray-700 px-8 py-4 text-lg font-black text-white tracking-[0.2em] uppercase">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
                         <span>Sold Out</span>
                     </div>
+                    <?php endif; ?>
+                    <?php if ($fromPc): ?>
+                    <p class="mt-6 text-center text-2xl md:text-4xl font-black text-white leading-tight">買取のお問い合わせは<br class="md:hidden">お気軽にどうぞ</p>
+                    <?php else: ?>
                     <p class="mt-4 text-center text-sm text-gray-500">類似車両のお問い合わせはお気軽にどうぞ</p>
+                    <?php endif; ?>
                     <a href="tel:<?= str_replace('-', '', SITE_PHONE) ?>" class="mt-3 flex w-full items-center justify-center gap-2 rounded-xl border border-gray-600 px-8 py-3 text-base font-bold text-gray-300 hover:bg-gray-800 transition-all">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
                         <span><?= SITE_PHONE ?></span>
@@ -151,7 +164,7 @@ require_once __DIR__ . '/includes/header.php';
                     <?php endif; ?>
                 </div>
 
-                <?php if ($isSoldOut): ?>
+                <?php if ($isSoldOut && !$fromPc): ?>
                 <!-- SOLD OUT 表示 -->
                 <div class="rounded-2xl border border-gray-200 bg-gray-50 px-6 py-5 flex items-center gap-4">
                     <div class="flex-shrink-0 w-10 h-10 rounded-full bg-black flex items-center justify-center">
@@ -254,12 +267,14 @@ require_once __DIR__ . '/includes/header.php';
             </div>
 
             <!-- 商品説明 -->
+            <?php if (!$fromPc): ?>
             <div class="lg:col-span-1">
                 <div class="rounded-3xl bg-gray-50 p-6 md:p-8">
                     <h3 class="mb-6 text-xl font-bold text-[#003366] border-l-4 border-[#facc15] pl-3">商品説明</h3>
                     <div class="whitespace-pre-wrap text-base leading-relaxed text-gray-700"><?= nl2br(h($description)) ?></div>
                 </div>
             </div>
+            <?php endif; ?>
         </div>
     </div>
 </div>

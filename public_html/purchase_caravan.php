@@ -228,23 +228,14 @@ require_once __DIR__ . '/includes/header.php';
                     $dPrice   = displayPriceMan($v['price']);
                     $cTitle   = cleanTitle($v['title']);
                 ?>
-                    <a href="/stock.php?id=<?= h($v['id']) ?>"
+                    <a href="/stock.php?id=<?= h($v['id']) ?>&from=pc"
                        class="vehicle-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl transition-all group flex flex-col">
                         <div class="relative aspect-[16/10] bg-gray-100 overflow-hidden">
                             <img src="<?= h($imgSrc) ?>" alt="<?= h($cTitle) ?>買取実績"
                                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                                  loading="lazy">
-                            <!-- Price Tag -->
-                            <div class="absolute top-4 left-0 z-10">
-                                <div class="bg-metallic text-slate-900 px-5 py-0.5 rounded-r-xl shadow-lg border-y border-r border-white/40 flex flex-col">
-                                    <span class="text-[10px] font-black uppercase tracking-widest leading-none mb-0.5 opacity-60">Price</span>
-                                    <span class="text-xl md:text-2xl font-black leading-none tracking-tighter">
-                                        <?= $dPrice ?><span class="text-[10px] ml-0.5">万円</span>
-                                    </span>
-                                </div>
-                            </div>
-                            <!-- SOLD OUT バッジ -->
-                            <div class="absolute top-2 right-2 bg-black text-white text-xs font-bold px-2 py-1 rounded z-10 tracking-widest">SOLD OUT</div>
+                            <!-- Price Tag (Hidden in purchase_caravan.php by user request) -->
+                            <!-- SOLD OUT バッジ (Hidden in purchase_caravan.php by user request) -->
                             <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent">
                                 <span class="text-white text-[10px] font-black uppercase tracking-widest opacity-80">No. <?= h($v['manage_number']) ?></span>
                             </div>
