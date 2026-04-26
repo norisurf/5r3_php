@@ -94,6 +94,30 @@ require_once __DIR__ . '/includes/header.php';
     </div>
 </section>
 
+<!-- Caravan Banner -->
+<section class="py-8 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+            <a href="/purchase_caravan.php" class="block group relative rounded-[2rem] overflow-hidden shadow-xl border border-slate-100 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+                <div class="absolute inset-0 bg-gradient-to-r from-slate-900 to-slate-800 opacity-90 group-hover:opacity-95 transition-opacity z-10"></div>
+                <img src="/images/lp/hero_fleet.png" alt="日産キャラバン買取" class="w-full h-full object-cover absolute inset-0 z-0 opacity-50">
+                <div class="relative z-20 p-8 md:p-10 flex flex-col md:flex-row items-center justify-between text-white">
+                    <div class="mb-6 md:mb-0 text-center md:text-left">
+                        <span class="inline-block bg-metallic text-slate-900 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest mb-3 shadow-lg">Special Page</span>
+                        <h2 class="text-2xl md:text-3xl font-black tracking-tight mb-2">日産キャラバン買取 <span class="text-slate-400">特設ページ</span></h2>
+                        <p class="text-slate-300 text-sm font-medium">過走行・旧式・架装車も高額査定。<br class="md:hidden">キャラバン専門の買取実績をご紹介しています。</p>
+                    </div>
+                    <div class="shrink-0 bg-white/10 group-hover:bg-white text-white group-hover:text-slate-900 w-12 h-12 rounded-full flex items-center justify-center transition-all border border-white/20 group-hover:border-white group-hover:scale-110">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
 <!-- Features -->
 <section class="py-24 bg-white">
     <div class="container mx-auto px-4 text-center mb-16">

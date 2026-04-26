@@ -16,6 +16,10 @@ nul
 public_html/uploads/*
 !public_html/uploads/.gitkeep
 
+# サイト内の静的画像ファイル
+public_html/images/*
+!public_html/images/.gitkeep
+
 # 動画ファイル（サイズが大きいため）
 public_html/video/*
 !public_html/video/.gitkeep
