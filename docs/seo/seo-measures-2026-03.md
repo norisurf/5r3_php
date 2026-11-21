@@ -162,3 +162,18 @@ Google の「動画 SEO のベストプラクティス」に基づき、以下�
 - **Search Console の監視:** 今回の修正後、Googleが再クロールを行い、エラーが「解消済み」になることを定期的に確認する。
 - **サイトマップ更新:** 動画を増設した場合は `sitemap.php` の `staticPages` 配列に `video => true` を設定し、適切なメタデータを記述すること。
 
+
+---
+
+## 8. 「日産 キャラバン」キーワード強化 (2026-11-21)
+
+Search Console 上の流入クエリが「軽バン専門店 東京」中心だったため、在庫の多い日産キャラバンで検索流入を得るための施策。
+
+- **新規ページ `public_html/caravan.php`**: キャラバン在庫（タイトルに「キャラバン/NV350」を含む車両）を自動抽出して一覧表示。在庫台数・価格帯を title/description に動的反映。型式・グレード解説、FAQ、構造化データ（ItemList / FAQPage / BreadcrumbList）を実装。
+- **トップページ (`index.php`)**: `$pageTitle` / `$pageDescription` を「日産キャラバン・軽バン中古車専門店」中心に変更（`config.php` はデプロイ対象外のため index.php 側で上書き）。PC ヒーローの文言を「日産キャラバン・軽バン多数在庫」に統一し、`/caravan.php` への内部リンクを追加。
+- **ナビゲーション**: ヘッダー（PC/モバイル）とフッターに `/caravan.php`、フッターに `/purchase_caravan.php` へのリンクを追加。
+- **サイトマップ**: `/caravan.php`（daily, 0.9）と `/purchase_caravan.php` を追加。
+- **車両詳細 (`stock.php`)**: `titleWithMaker()` で車種名の前にメーカー名を補完（例: 「NV350キャラバンDX」→「日産 NV350キャラバンDX」）。title / H1 / 構造化データ（brand）に反映。キャラバン車両には `/caravan.php` へのリンクを表示。
+- **共通関数 (`includes/functions.php`)**: `isCaravan()` / `detectMaker()` / `titleWithMaker()` を追加。
+
+**公開後の作業:** Search Console で `/caravan.php` の URL 検査 → インデックス登録をリクエスト、サイトマップを再送信。

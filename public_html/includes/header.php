@@ -51,6 +51,7 @@
                 <div class="hidden md:flex items-center ml-auto">
                     <nav class="hidden lg:flex items-center space-x-8 text-base font-bold mr-10">
                         <a href="/sales.php" class="text-slate-800 hover:text-slate-500 transition-colors tracking-tighter">中古車販売</a>
+                        <a href="/caravan.php" class="text-slate-800 hover:text-slate-500 transition-colors tracking-tighter">キャラバン在庫</a>
                         <a href="/sold.php" class="text-slate-800 hover:text-slate-500 transition-colors tracking-tighter">販売実績</a>
                         <a href="/purchase.php" class="text-slate-800 hover:text-slate-500 transition-colors tracking-tighter">買取</a>
                         <a href="<?= LINK_LINE ?>" class="hover:opacity-80 transition-opacity">
@@ -109,6 +110,7 @@
         <div class="flex-1 overflow-y-auto p-6 flex flex-col space-y-8">
             <nav class="flex flex-col space-y-6 text-xl font-black text-slate-900">
                 <a href="/sales.php" class="hover:text-slate-600 border-b border-slate-100 pb-4 flex justify-between items-center group tracking-tighter">中古車販売<span class="text-slate-300">→</span></a>
+                <a href="/caravan.php" class="hover:text-slate-600 border-b border-slate-100 pb-4 flex justify-between items-center group tracking-tighter">日産キャラバン在庫<span class="text-slate-300">→</span></a>
                 <a href="/sold.php" class="hover:text-slate-600 border-b border-slate-100 pb-4 flex justify-between items-center group tracking-tighter">販売実績<span class="text-slate-300">→</span></a>
                 <a href="/purchase.php" class="hover:text-slate-600 border-b border-slate-100 pb-4 flex justify-between items-center group tracking-tighter">買取<span class="text-slate-300">→</span></a>
                 <a href="<?= LINK_LINE ?>" class="hover:text-slate-600 border-b border-slate-100 pb-4 flex justify-between items-center group tracking-tighter">

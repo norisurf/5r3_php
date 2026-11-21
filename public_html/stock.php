@@ -32,6 +32,9 @@ $detailedInfo = jsonDecode($vehicle['detailed_info'], []);
 $equipment = jsonDecode($vehicle['equipment'], []);
 $price = displayPrice((int)$vehicle['price']);
 $title = cleanTitle($vehicle['title']);
+$seoTitle = titleWithMaker($title); // 例: 「NV350キャラバンGX」→「日産 NV350キャラバンGX」
+$maker = detectMaker($title);
+$isCaravanVehicle = isCaravan($title);
 $description = cleanDescription($vehicle['description'] ?? '');
 
 // 前のページが「販売実績」なら販売実績に戻るように判定
@@ -46,8 +49,8 @@ $priceLabel = $vehicle['price'] ? displayPrice((int)$vehicle['price']) . '万円
 $metaParts = array_filter([$yearLabel, $mileageLabel, $priceLabel]);
 
 // タイトルとディスクリプションをSEO最適化（「中古」キーワードと「地域名」を強化）
-$pageTitle = $title . ' 中古車情報 | 練馬区・大泉学園の5R3';
-$pageDescription = '東京都練馬区・大泉学園の5R3。' . $title . 'の中古車をお探しなら当店へ。東京都内・周辺エリア（板橋区・杉並区・西東京市・和光市・新座市）へ最短当日納車。全国陸送・納車対応！' . 
+$pageTitle = $seoTitle . ' 中古車情報 | 練馬区・大泉学園の5R3';
+$pageDescription = '東京都練馬区・大泉学園の5R3。' . $seoTitle . 'の中古車をお探しなら当店へ。東京都内・周辺エリア（板橋区・杉並区・西東京市・和光市・新座市）へ最短当日納車。全国陸送・納車対応！' . 
                    (empty($metaParts) ? '' : implode('・', $metaParts) . '。') . 
                    '即納相談受付中。';
 
@@ -71,6 +74,11 @@ require_once __DIR__ . '/includes/header.php';
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
             <span><?= $backText ?></span>
         </a>
+        <?php if ($isCaravanVehicle && !$fromPc): ?>
+        <a href="/caravan.php" class="mb-8 ml-6 inline-flex items-center gap-2 text-gray-500 hover:text-[#003366] transition-colors">
+            <span>日産キャラバンの在庫一覧を見る →</span>
+        </a>
+        <?php endif; ?>
 
         <div class="grid grid-cols-1 gap-12 lg:grid-cols-2">
             <!-- 画像ギャラリー -->
@@ -98,7 +106,7 @@ require_once __DIR__ . '/includes/header.php';
             <!-- 車両情報 -->
             <div class="space-y-8">
                 <div>
-                    <h1 class="text-2xl font-bold leading-tight text-black md:text-3xl"><?= h($title) ?> <span class="text-gray-500 font-normal"><?= $fromPc ? '買取' : '中古' ?></span></h1>
+                    <h1 class="text-2xl font-bold leading-tight text-black md:text-3xl"><?= h($seoTitle) ?> <span class="text-gray-500 font-normal"><?= $fromPc ? '買取' : '中古' ?></span></h1>
                     <div class="mt-4 flex flex-wrap gap-4">
                         <?php if (!empty($basicInfo['年式'])): ?>
                         <div class="flex items-center gap-1.5 rounded-full bg-gray-100 px-4 py-1.5 text-sm font-medium text-gray-600">
@@ -303,7 +311,10 @@ require_once __DIR__ . '/includes/header.php';
 {
   "@context": "https://schema.org",
   "@type": "Car",
-  "name": "<?= addslashes(h($title)) ?> 中古車",
+  "name": "<?= addslashes(h($seoTitle)) ?> 中古車",
+  <?php if ($maker !== null): ?>
+  "brand": { "@type": "Brand", "name": "<?= h($maker) ?>" },
+  <?php endif; ?>
   "description": "<?= addslashes(h($description ?: $pageDescription)) ?>",
   "itemCondition": "https://schema.org/UsedCondition",
   <?php if (!empty($images)): ?>

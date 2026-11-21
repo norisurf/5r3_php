@@ -56,6 +56,57 @@ function cleanTitle(string $title): string {
 }
 
 /**
+ * 車両タイトルがキャラバン（NV350 / E25 / E26 等）かどうか
+ */
+function isCaravan(string $title): bool {
+    return (bool)preg_match('/キャラバン|NV350|CARAVAN/iu', $title);
+}
+
+/**
+ * メーカー名と車種名パターンの対応表（SEO用）
+ */
+function makerPatterns(): array {
+    return [
+        '日産'     => '/日産|ニッサン|NV350|NV200|キャラバン|バネット|クリッパー|セレナ|エルグランド/u',
+        'トヨタ'   => '/トヨタ|ハイエース|レジアスエース|ライトエース|タウンエース|プロボックス|ノア|ヴォクシー|アルファード|ヴェルファイア/u',
+        'マツダ'   => '/マツダ|ボンゴ/u',
+        'ホンダ'   => '/ホンダ|N-VAN|N-WGN|N-BOX|アクティ|エリシオン|ステップワゴン|オデッセイ/u',
+        'スズキ'   => '/スズキ|エブリイ|エブリィ|キャリイ/u',
+        'ダイハツ' => '/ダイハツ|ハイゼット|アトレー/u',
+        'いすゞ'   => '/いすゞ|コモ/u',
+        '三菱'     => '/三菱|ミニキャブ|デリカ/u',
+    ];
+}
+
+/**
+ * 車両タイトルからメーカー名を推定（判定できなければ null）
+ */
+function detectMaker(string $title): ?string {
+    foreach (makerPatterns() as $maker => $pattern) {
+        if (preg_match($pattern, $title)) {
+            return $maker;
+        }
+    }
+    return null;
+}
+
+/**
+ * 車種名の直前にメーカー名を挿入（既に含まれていれば何もしない）
+ * 例: 「H25 検8/12 NV350キャラバンDX」→「H25 検8/12 日産 NV350キャラバンDX」
+ */
+function titleWithMaker(string $title): string {
+    $maker = detectMaker($title);
+    if ($maker === null || mb_strpos($title, $maker) !== false) {
+        return $title;
+    }
+    if (!preg_match(makerPatterns()[$maker], $title, $m, PREG_OFFSET_CAPTURE)) {
+        return $maker . ' ' . $title;
+    }
+    $pos = $m[0][1]; // バイト位置
+    return rtrim(substr($title, 0, $pos)) . ($pos > 0 ? ' ' : '') . $maker . ' ' . substr($title, $pos);
+}
+
+/**
  * 商品説明から最後の「■」以下を削除
  */
 function cleanDescription(string $desc): string {

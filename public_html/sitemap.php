@@ -27,8 +27,10 @@ $lines[] = '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:vi
 // 静的ページ
 $staticPages = [
     ['url' => '/',             'freq' => 'daily',   'pri' => '1.0', 'video' => 'top'],
+    ['url' => '/caravan.php',  'freq' => 'daily',   'pri' => '0.9', 'video' => false],
     ['url' => '/sales.php',    'freq' => 'weekly',  'pri' => '0.8', 'video' => false],
     ['url' => '/purchase.php', 'freq' => 'monthly', 'pri' => '0.8', 'video' => 'purchase'],
+    ['url' => '/purchase_caravan.php', 'freq' => 'monthly', 'pri' => '0.7', 'video' => false],
     ['url' => '/company.php',  'freq' => 'monthly', 'pri' => '0.6', 'video' => false],
     ['url' => '/lp.php',       'freq' => 'weekly',  'pri' => '0.7', 'video' => 'top'],
 ];

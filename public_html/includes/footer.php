@@ -48,6 +48,10 @@
 
                     <li><a href="/sales.php" class="hover:text-white transition-colors">中古車販売</a></li>
 
+                    <li><a href="/caravan.php" class="hover:text-white transition-colors">日産キャラバン中古車在庫</a></li>
+
+                    <li><a href="/purchase_caravan.php" class="hover:text-white transition-colors">キャラバン買取</a></li>
+
                     <li><a href="/purchase.php" class="hover:text-white transition-colors">買取・下取り</a></li>
 
                     <!-- <li><a href="/lp.php" class="hover:text-white transition-colors">即納の理由</a></li> -->

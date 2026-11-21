@@ -41,14 +41,18 @@ if ($banner) {
     }
 }
 
+// SEO: タイトル・ディスクリプション（日産キャラバン中心。config.php はデプロイ対象外のためここで指定）
+$pageTitle = '日産キャラバン・軽バン中古車専門店 5R3 | 東京・練馬区 | 常時20台在庫';
+$pageDescription = '日産キャラバン（NV350・E25）の中古車なら東京都練馬区・大泉学園・土支田の5R3。キャラバンを中心にワンボックス・軽バンを常時20台在庫、100万円前後の仕事用車両が充実。板橋区・杉並区・和光市・新座市など都内近郊へ最短当日納車、全国陸送対応。';
+
 // 動画SEO構造化データ
 $pageCustomSchema = '
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "VideoObject",
-  "name": "5R3 ワンボックス・軽バン中古専門店 在庫紹介",
-  "description": "東京都練馬区、大泉学園・土支田のワンボックスカー・軽バン中古専門店 5R3 の在庫車両紹介動画です。最短当日納車、100万円前後の良質な中古車を20台以上在庫しています。",
+  "name": "5R3 日産キャラバン・ワンボックス・軽バン中古専門店 在庫紹介",
+  "description": "東京都練馬区、大泉学園・土支田の日産キャラバン・ワンボックスカー・軽バン中古専門店 5R3 の在庫車両紹介動画です。最短当日納車、100万円前後の良質な中古車を20台以上在庫しています。",
   "thumbnailUrl": [
     "https://5r3.co.jp/images/lp/video_thumbnail.jpg"
   ],
@@ -83,7 +87,7 @@ require_once __DIR__ . '/includes/header.php';
                 </h1>
 
                 <p class="text-3xl text-slate-700 font-bold">
-                    ワンボックスカー・ミニバン多数在庫
+                    <a href="/caravan.php" class="hover:text-red-600 transition-colors">日産キャラバン</a>・軽バン多数在庫
                 </p>
 
                 <p class="text-slate-500 font-medium">
@@ -153,6 +157,9 @@ require_once __DIR__ . '/includes/header.php';
             <p class="mt-4 text-slate-500 font-medium text-sm max-w-xl mx-auto">
                 「即納可」ラベル付きの車両は、最短当日中の納車相談が可能です。
             </p>
+            <a href="/caravan.php" class="mt-6 inline-flex items-center bg-slate-900 text-white px-6 py-3 rounded-full text-sm font-bold hover:bg-slate-800 transition-all shadow-lg">
+                日産キャラバンの在庫だけを見る →
+            </a>
         </div>
 
         <!-- Sort Controls -->
@@ -264,7 +271,7 @@ require_once __DIR__ . '/includes/header.php';
             <h2 class="text-4xl font-black tracking-tight leading-[1.1] text-slate-900">
                 最短<span class="text-red-600 text-5xl mx-2">即日</span>在庫案内<br>できます
             </h2>
-            <p class="text-xl text-slate-700 font-bold">日産キャラバン・軽バン多数在庫</p>
+            <p class="text-xl text-slate-700 font-bold"><a href="/caravan.php" class="underline decoration-red-600">日産キャラバン</a>・軽バン多数在庫</p>
             <p class="text-slate-500 font-medium">車が壊れても、仕事は止めさせません。<br>今すぐお電話ください。</p>
             <div class="pt-6">
                 <a href="<?= SITE_PHONE_TEL ?>" class="w-full flex flex-col items-center justify-center bg-red-600 text-white px-10 py-5 rounded-full shadow-2xl shadow-red-600/30 hover:bg-red-700 transition-all active:scale-95 border-4 border-white ring-4 ring-red-100">
