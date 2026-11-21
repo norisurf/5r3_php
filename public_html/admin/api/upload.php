@@ -42,13 +42,13 @@ if ($file['size'] > MAX_UPLOAD_SIZE) {
     jsonResponse(['error' => 'ファイルサイズは10MB以下にしてください'], 400);
 }
 
-// MIMEタイプチェック
-$allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+// MIMEタイプチェック（拡張子は元のファイル名ではなく、実際の画像形式から決める）
+$extByType = ['image/jpeg' => 'jpg', 'image/png' => 'png', 'image/webp' => 'webp', 'image/gif' => 'gif'];
 $finfo = finfo_open(FILEINFO_MIME_TYPE);
 $mimeType = finfo_file($finfo, $file['tmp_name']);
 finfo_close($finfo);
 
-if (!in_array($mimeType, $allowedTypes, true)) {
+if (!isset($extByType[$mimeType]) || @getimagesize($file['tmp_name']) === false) {
     jsonResponse(['error' => 'JPEG, PNG, WebP, GIF形式のみ対応しています'], 400);
 }
 
@@ -59,8 +59,7 @@ if (!is_dir(UPLOAD_DIR)) {
 
 // ユニークなファイル名を生成
 $timestamp = time();
-$ext = pathinfo($file['name'], PATHINFO_EXTENSION) ?: 'jpg';
-$ext = preg_replace('/[^a-zA-Z0-9]/', '', $ext); // サニタイズ
+$ext = $extByType[$mimeType];
 $fileName = 'banner_' . $timestamp . '_' . bin2hex(random_bytes(4)) . '.' . $ext;
 $filePath = UPLOAD_DIR . '/' . $fileName;
 

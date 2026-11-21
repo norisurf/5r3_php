@@ -11,6 +11,8 @@ RewriteRule ^sitemap\.xml$ sitemap.php [L]
     Header set X-Content-Type-Options "nosniff"
     Header set X-Frame-Options "SAMEORIGIN"
     Header set X-XSS-Protection "1; mode=block"
+    # HSTS: ブラウザに常にHTTPSで接続させる（HTTPは上でHTTPSへリダイレクト済み）
+    Header always set Strict-Transport-Security "max-age=31536000"
 </IfModule>
 
 # ドットファイル (.env, .htaccess, .htpasswd 等) のアクセス禁止

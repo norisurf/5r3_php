@@ -56,6 +56,19 @@ function cleanTitle(string $title): string {
 }
 
 /**
+ * 外部画像として取得してよいURLか（Yahoo!オークションの画像サーバーのみ許可）
+ * 任意URLの取得（SSRF）やローカルファイルの読み出しを防ぐ。
+ */
+function isAllowedRemoteImageUrl(string $url): bool {
+    $parts = parse_url($url);
+    if (!is_array($parts) || !in_array(strtolower($parts['scheme'] ?? ''), ['http', 'https'], true)) {
+        return false;
+    }
+    $host = strtolower($parts['host'] ?? '');
+    return (bool)preg_match('/(^|\.)(yimg\.jp|yahoo\.co\.jp)$/', $host);
+}
+
+/**
  * 車両タイトルがキャラバン（NV350 / E25 / E26 等）かどうか
  */
 function isCaravan(string $title): bool {

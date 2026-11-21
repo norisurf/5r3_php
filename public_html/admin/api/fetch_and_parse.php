@@ -61,7 +61,8 @@ $curlError = curl_error($ch);
 curl_close($ch);
 
 if ($html === false || !empty($curlError)) {
-    jsonResponse(['error' => 'HTMLの取得に失敗しました', 'details' => $curlError], 500);
+    error_log('fetch_and_parse.php curl: ' . $curlError);
+    jsonResponse(['error' => 'HTMLの取得に失敗しました'], 500);
 }
 
 if ($httpCode !== 200) {

@@ -28,7 +28,7 @@ function csrfField(): string {
 function verifyCsrf(): void {
     if (session_status() === PHP_SESSION_NONE) session_start();
     $token = $_POST['csrf_token'] ?? $_SERVER['HTTP_X_CSRF_TOKEN'] ?? '';
-    if (empty($token) || $token !== ($_SESSION['csrf_token'] ?? '')) {
+    if (!is_string($token) || $token === '' || !hash_equals((string)($_SESSION['csrf_token'] ?? ''), $token)) {
         http_response_code(403);
         die('不正なリクエストです');
     }
@@ -40,7 +40,7 @@ function verifyCsrf(): void {
 function verifyCsrfApi(): void {
     if (session_status() === PHP_SESSION_NONE) session_start();
     $token = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? '';
-    if (empty($token) || $token !== ($_SESSION['csrf_token'] ?? '')) {
+    if (!is_string($token) || $token === '' || !hash_equals((string)($_SESSION['csrf_token'] ?? ''), $token)) {
         http_response_code(403);
         header('Content-Type: application/json');
         echo json_encode(['error' => '不正なリクエストです']);

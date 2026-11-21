@@ -65,16 +65,20 @@ foreach ($images as $idx => $url) {
         continue;
     }
 
+    // Yahoo!オークションの画像サーバー以外は取得しない（SSRF・ローカルファイル読み出し対策）
+    if (!isAllowedRemoteImageUrl($url)) {
+        $errors[] = "画像 " . ($idx + 1) . " は許可されていないURLのためスキップしました";
+        $newImages[] = $url;
+        continue;
+    }
+
     // 外部URLから画像をダウンロード
     $ctx = stream_context_create([
         'http' => [
-            'timeout'    => 15,
-            'user_agent' => 'Mozilla/5.0 (compatible; 5r3bot/1.0)',
-            'header'     => "Referer: https://auctions.yahoo.co.jp/\r\n",
-        ],
-        'ssl' => [
-            'verify_peer'      => false,
-            'verify_peer_name' => false,
+            'timeout'         => 15,
+            'user_agent'      => 'Mozilla/5.0 (compatible; 5r3bot/1.0)',
+            'header'          => "Referer: https://auctions.yahoo.co.jp/\r\n",
+            'follow_location' => 0,
         ],
     ]);
 

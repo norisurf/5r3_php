@@ -17,10 +17,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     verifyCsrf();
     $username = $_POST['username'] ?? '';
     $password = $_POST['password'] ?? '';
-    if (attemptLogin($username, $password)) {
+    $lockRemaining = loginLockRemaining();
+    if ($lockRemaining > 0) {
+        // 総当たり攻撃対策: 一定回数失敗したIPは一定時間ログイン不可
+        http_response_code(429);
+        $error = 'ログインの失敗が続いたため、一時的にロックしています。約' . (int)ceil($lockRemaining / 60) . '分後に再度お試しください。';
+    } elseif (attemptLogin((string)$username, (string)$password)) {
+        clearLoginFailures();
         header('Location: /admin/');
         exit;
     } else {
+        recordLoginFailure();
+        sleep(1); // 連続試行の速度を落とす
         $error = 'ユーザー名またはパスワードが正しくありません。';
     }
 }

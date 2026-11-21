@@ -50,8 +50,8 @@ foreach (array_slice($urls, 0, 20) as $idx => $url) { // 最大20枚
         continue;
     }
 
-    // http/https 以外はスキップ
-    if (!preg_match('#^https?://#', $url)) {
+    // Yahoo!オークションの画像サーバー以外は取得しない（SSRF対策）
+    if (!isAllowedRemoteImageUrl($url)) {
         $localPaths[] = $url;
         continue;
     }
@@ -61,11 +61,11 @@ foreach (array_slice($urls, 0, 20) as $idx => $url) { // 最大20枚
     curl_setopt_array($ch, [
         CURLOPT_URL            => $url,
         CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_MAXREDIRS      => 3,
+        CURLOPT_FOLLOWLOCATION => false, // リダイレクト先で許可外ホストに飛ばされないように
+        CURLOPT_PROTOCOLS      => CURLPROTO_HTTP | CURLPROTO_HTTPS,
         CURLOPT_TIMEOUT        => 20,
         CURLOPT_CONNECTTIMEOUT => 10,
-        CURLOPT_SSL_VERIFYPEER => false,
+        CURLOPT_SSL_VERIFYPEER => true,
         CURLOPT_USERAGENT      => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
         CURLOPT_HTTPHEADER     => [
             'Referer: https://auctions.yahoo.co.jp/',
