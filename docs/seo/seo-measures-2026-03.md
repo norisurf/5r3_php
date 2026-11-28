@@ -177,3 +177,11 @@ Search Console 上の流入クエリが「軽バン専門店 東京」中心だ�
 - **共通関数 (`includes/functions.php`)**: `isCaravan()` / `detectMaker()` / `titleWithMaker()` を追加。
 
 **公開後の作業:** Search Console で `/caravan.php` の URL 検査 → インデックス登録をリクエスト、サイトマップを再送信。
+
+---
+
+## 9. 「キャラバン専門店 関東」キーワード追加 (2026-11-28)
+
+- **`public_html/caravan.php`**: title に「関東のキャラバン専門店」、description に「関東で…キャラバン専門店5R3」「東京・埼玉・神奈川・千葉など関東一円へ納車」を追加。ヒーローのバッジ・リード文・納車ボックスに同キーワードを反映。
+- **FAQ 追加**: 「関東でキャラバン専門店を探しています。東京以外の県からでも購入できますか？」（FAQPage 構造化データにも自動反映）。
+- **構造化データ**: `AutoDealer`（住所・電話・`areaServed` に関東1都6県）を追加。

@@ -18,11 +18,11 @@ $minPrice = $prices ? min($prices) : null;
 $maxPrice = $prices ? max($prices) : null;
 
 $countLabel = $count > 0 ? '在庫' . $count . '台' : '在庫多数';
-$pageTitle = '日産キャラバン中古車 ' . $countLabel . ' | NV350・E25 | 東京・練馬区の5R3';
-$pageDescription = '日産キャラバンの中古車なら東京都練馬区・大泉学園の5R3。NV350キャラバン・E25キャラバンを'
+$pageTitle = '日産キャラバン中古車 ' . $countLabel . ' | 関東のキャラバン専門店 | 東京・練馬区の5R3';
+$pageDescription = '関東で日産キャラバンの中古車を探すなら、東京都練馬区・大泉学園のキャラバン専門店5R3。NV350キャラバン・E25キャラバンを'
     . ($count > 0 ? '現在' . $count . '台' : '常時多数')
     . '在庫' . ($minPrice !== null ? '（' . $minPrice . '万円〜）' : '')
-    . '。ディーゼル・4WD・スーパーロング・ライダーなど仕事用からレジャーまで。東京都内最短当日納車、全国陸送対応。';
+    . '。ディーゼル・4WD・スーパーロング・ライダーなど仕事用からレジャーまで。東京・埼玉・神奈川・千葉など関東一円へ納車、全国陸送対応。';
 $pageCanonicalUrl = 'https://5r3.co.jp/caravan.php';
 
 $faqs = [
@@ -41,6 +41,10 @@ $faqs = [
     [
         'q' => 'キャラバンを購入した場合、最短でいつ納車できますか？',
         'a' => '「即納可」の車両は、書類が揃っていれば東京都内最短当日の納車が可能です。練馬区・板橋区・杉並区・西東京市・埼玉県和光市・新座市など近隣エリアはもちろん、全国陸送にも対応しています。',
+    ],
+    [
+        'q' => '関東でキャラバン専門店を探しています。東京以外の県からでも購入できますか？',
+        'a' => 'はい。5R3は東京都練馬区のキャラバン専門店として、東京都内はもちろん埼玉県・神奈川県・千葉県・茨城県・栃木県・群馬県など関東一円のお客様にご購入いただいています。ご来店が難しい場合も、お電話やオンラインで車両状態をご説明し、ご自宅や職場まで陸送で納車いたします。',
     ],
     [
         'q' => '今乗っているキャラバンや商用車の下取り・買取はできますか？',
@@ -82,6 +86,22 @@ $schema = [
                 ['@type' => 'ListItem', 'position' => 2, 'name' => '日産キャラバン中古車在庫', 'item' => $pageCanonicalUrl],
             ],
         ],
+        [
+            '@type'       => 'AutoDealer',
+            'name'        => '5R3 関東のキャラバン専門店',
+            'url'         => $pageCanonicalUrl,
+            'telephone'   => SITE_PHONE,
+            'address'     => [
+                '@type'           => 'PostalAddress',
+                'streetAddress'   => '東大泉2-20-5-B1F',
+                'addressLocality' => '練馬区',
+                'addressRegion'   => '東京都',
+                'postalCode'      => '178-0063',
+                'addressCountry'  => 'JP',
+            ],
+            'areaServed'  => array_map(fn(string $n): array => ['@type' => 'AdministrativeArea', 'name' => $n],
+                ['東京都', '埼玉県', '神奈川県', '千葉県', '茨城県', '栃木県', '群馬県']),
+        ],
     ],
 ];
 $pageCustomSchema = '<script type="application/ld+json">'
@@ -109,14 +129,14 @@ require_once __DIR__ . '/includes/header.php';
         </nav>
         <div class="max-w-3xl">
             <div class="inline-flex items-center space-x-2 bg-metallic text-slate-900 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest mb-6">
-                <span>NISSAN CARAVAN</span>
+                <span>NISSAN CARAVAN | 関東のキャラバン専門店</span>
             </div>
             <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight tracking-tighter">
                 日産キャラバンの中古車<br>
                 <span class="text-slate-400">在庫一覧</span>
             </h1>
             <p class="text-lg md:text-xl text-slate-300 mb-8 max-w-2xl font-medium leading-relaxed">
-                東京都練馬区・大泉学園の5R3は、日産キャラバンを中心に在庫しているワンボックス中古車店です。
+                東京都練馬区・大泉学園の5R3は、日産キャラバンを中心に在庫する、関東のキャラバン専門店です。
                 NV350キャラバン・E25キャラバンを<?= $count > 0 ? '現在<strong class="text-white">' . $count . '台</strong>' : '常時多数' ?>在庫。
                 ディーゼル・4WD・スーパーロングなど、仕事で使える一台をすぐにご案内します。
             </p>
@@ -133,7 +153,7 @@ require_once __DIR__ . '/includes/header.php';
                 <?php endif; ?>
                 <div class="bg-white/5 backdrop-blur-sm border border-white/10 px-6 py-4 rounded-2xl">
                     <p class="text-[10px] text-white/40 font-bold uppercase">Delivery</p>
-                    <p class="text-sm font-bold">都内最短当日納車・全国陸送</p>
+                    <p class="text-sm font-bold">都内最短当日納車・関東一円へ納車</p>
                 </div>
             </div>
         </div>
